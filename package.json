@@ -1,0 +1,45 @@
+{
+  "name": "esri-flux-react",
+  "version": "1.0.0",
+  "description": "Simple starter template for applications using Esri's ArcGIS JavaScript API and React.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run watch",
+    "watch": "npm run jade:watch & npm run stylus:watch & npm run jsx:watch",
+    "jade:watch": "node_modules/jade/bin/jade.js src/index.jade -P -O src/index.json --watch",
+    "stylus:watch": "node_modules/stylus/bin/stylus src/css/app.styl -l --watch",
+    "jsx:watch": "node_modules/react-tools/bin/jsx src/js/components src/js/components --watch --harmony --extension jsx",
+    "build": "npm run clean:build && npm run jade:build && npm run stylus:build && npm run copy:build:images && npm run optimize && exit 0",
+    "clean:build": "rm -rf build",
+    "jade:build": "node_modules/jade/bin/jade.js src/index.jade -o build -O src/index.json",
+    "stylus:build": "mkdir -p build/css && node_modules/stylus/bin/stylus src/css/app.styl -o build/css --compress",
+    "optimize": "npm run jsx:build && node_modules/requirejs/bin/r.js -o app.build.js",
+    "jsx:build": "node_modules/react-tools/bin/jsx src/js/components src/js/components --harmony --extension jsx",
+    "copy:build:images": "mkdir -p build/css/images && cp -r src/css/images/* build/css/images",
+    "test": ""
+  },
+  "keywords": [
+    "esri",
+    "javascript",
+    "arcgis",
+    "react",
+    "template",
+    "flux",
+    "lodash",
+    "requirejs",
+    "jade",
+    "stylus",
+    "jsx"
+  ],
+  "author": "Robert Winterbottom",
+  "license": "ISC",
+  "dependencies": {
+    "jade": "^1.9.2",
+    "react-tools": "^0.13.1",
+    "requirejs": "^2.1.17",
+    "stylus": "^0.50.0"
+  },
+  "devDependencies": {
+    "react": "^0.13.1"
+  }
+}
