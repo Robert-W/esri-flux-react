@@ -1,0 +1,7 @@
+{
+	"title": "Simple Map Template",
+	"subtitle": "A simple mapping application template with React and Esri's ArcGIS JavaScript API",
+	"author": "Robert Winterbottom",
+	"esriVersion": "3.13",
+	"appVersion": "1.0.0"
+}

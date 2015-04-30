@@ -1,0 +1,25 @@
+# Ignore the build directory, run npm build to generate
+
+build
+
+# Ignore components installed by bower, run bower install to retrieve these
+
+bower
+
+# Ignore these, just do it
+
+node_modules
+
+# Ignore this to avoid strange conflicts
+
+.DS_Store
+
+# Ignore any generated content to prevent conflicts when multiple people develop
+# html is generated from Jade Templates
+# js in the comopnents folder is generated from React's jsx files
+# css is generated from stylus files, everything pipes into app.css but ignore all
+
+*.html
+*.css
+src/js/components/*.js
+src/js/components/.module-cache

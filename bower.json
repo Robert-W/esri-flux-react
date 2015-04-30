@@ -1,0 +1,7 @@
+{
+  "name": "Simple-Template",
+  "dependencies": {
+    "react": "~0.13.1",
+    "lodash": "~3.7.0"
+  }
+}
