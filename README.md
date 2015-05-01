@@ -1,6 +1,9 @@
 # esri-flux-react
 Simple demo application using Esri's JavaScript API and React. It also shows how to use the Flux architecture in a map based application.
 
+## Demo
+<a href='http://robert-w.github.io/esri-flux-react/'>http://robert-w.github.io/esri-flux-react/</a>
+
 ### Installation
 <p>This project requires node.js and bower.</p>
 
