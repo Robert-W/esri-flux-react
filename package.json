@@ -1,7 +1,7 @@
 {
   "name": "esri-flux-react",
   "version": "1.0.0",
-  "description": "Simple starter template for applications using Esri's ArcGIS JavaScript API and React.",
+  "description": "Simple demo application using Esri's JavaScript API and React. It also shows how to use the Flux architecture in a map based application.",
   "main": "index.js",
   "scripts": {
     "start": "npm run watch",
@@ -32,7 +32,7 @@
     "jsx"
   ],
   "author": "Robert Winterbottom",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "jade": "^1.9.2",
     "react-tools": "^0.13.1",
