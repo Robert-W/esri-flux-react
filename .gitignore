@@ -1,6 +1,7 @@
-# Ignore the build directory, run npm build to generate
+# Ignore the build directory and src directory, run npm build to generate
 
 src
+build
 
 # Ignore these, just do it
 
