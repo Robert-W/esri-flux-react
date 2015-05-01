@@ -2,10 +2,6 @@
 
 src
 
-# Ignore components installed by bower, run bower install to retrieve these
-
-bower
-
 # Ignore these, just do it
 
 node_modules
