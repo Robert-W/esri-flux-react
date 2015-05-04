@@ -6,6 +6,7 @@ build
 # Ignore these, just do it
 
 node_modules
+npm-debug.log
 
 # Ignore this to avoid strange conflicts
 
