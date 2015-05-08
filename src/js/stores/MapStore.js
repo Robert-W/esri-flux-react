@@ -22,7 +22,7 @@ define([
 		*/
 		set: function (key, value) {
 			Store[key] = value;
-			this.notifySubscribers(key);
+			this.notifyObservers(key);
 		},
 
 		/**
@@ -47,16 +47,14 @@ define([
 		},
 
 		/**
-		* @param {string} key - key of item in Callbacks used to help locate the appropriate callbacks
+		* @param {string} property - property in Callbacks used to help locate the appropriate callbacks
 		* @param {function} callback - callback to remove
-		* @return {bool} status - returns true if a callback was found and removed, else returns false
 		*/
-		unregisterCallback: function (key, callback) {
+		unregisterCallback: function (property, callback) {
 			var status = false,
 					callbackIndex = -1,
-					callbacks = Callbacks[key];
+					callbacks = Callbacks[property];
 
-			// If there are no callbacks registered, return false
 			if (!callbacks) {
 				return status;
 			// If there are callbacks registered and there are some in the array, inspect
@@ -79,10 +77,10 @@ define([
 		},
 
 		/**
-		* @param {string} callbackKey - Callbacks key to trigger registered callbacks
+		* @param {string} property - Property in store we are sending notifications for
 		*/
-		notifySubscribers: function (callbackKey) {
-			var callbacks = Callbacks[callbackKey];
+		notifyObservers: function (property) {
+			var callbacks = Callbacks[property];
 			if (callbacks) {
 				callbacks.forEach(function (func) {
 					func();
@@ -95,6 +93,10 @@ define([
 		*/
 		serialize: function () {
 			return JSON.stringify(Store);
+		},
+
+		debug: function () {
+			console.dir(Store);
 		}
 
 	};
