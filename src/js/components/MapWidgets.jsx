@@ -19,7 +19,7 @@ define([
 	});
 
 	/**
-	* @param {string} node - id of dome node to mount component to
+	* @param {string} node - id of dom node to mount component to
 	* @param {object} props - properties to pass to the map widgets if necessary
 	*/
 	return function (node, props) {
