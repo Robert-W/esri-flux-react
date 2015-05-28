@@ -8,6 +8,8 @@ var dojoConfig = {
 		{ name: 'map', location: base + '/js/map' },
 		{ name: 'main', location: base + '/js/main' },
 		{ name: 'stores', location: base + '/js/stores' },
+		{ name: 'actions', location: base + '/js/actions' },
+		{ name: 'constants', location: base + '/js/constants' },
 		{ name: 'components', location: base + '/js/components' }
 	],
 	aliases: [
@@ -16,4 +18,10 @@ var dojoConfig = {
 	],
 	deps: ['dojo/domReady!'],
 	callback: function () { require(['js/bundle']); }
-};</script><script src="http://js.arcgis.com/3.13/init.js" async></script><link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"></body></html>
+};</script><script src="http://js.arcgis.com/3.13/init.js" async></script><script>var link = document.createElement('link');
+link.href = 'http://js.arcgis.com/3.13/esri/css/esri.css';
+link.rel = 'stylesheet';
+link.type = 'text/css';
+requestAnimationFrame(function () {
+	document.body.appendChild(link);
+});</script></body></html>
