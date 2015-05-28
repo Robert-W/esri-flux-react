@@ -4,8 +4,10 @@ define([
 	'esri/urlUtils',
 	'map/MapConfig',
 	'stores/MapStore',
+	'actions/MapActions',
+	'constants/MapConstants',
 	'components/BasemapGalleryItem'
-], function (React, urlUtils, MapConfig, MapStore, BasemapGalleryItem) {
+], function (React, urlUtils, MapConfig, MapStore, MapActions, MapConstants, BasemapGalleryItem) {
 
 	// Bsaemaps configuration of which maps to show, values are the values ArcGIS uses to change basemaps
 	var basemaps = MapConfig.uiComponents.basemaps;
@@ -13,21 +15,16 @@ define([
 	// Path to prefix to all icons in basemaps
 	var imagePrefix = 'css/images/';
 
-	// Key for storing values in the MapStore
-	var MAP_STORE_KEY = 'basemap';
-
 	// Retrieve data from the store or use a default value
 	var getSelectedValue = function () {
-		return MapStore.get(MAP_STORE_KEY) || app.map.getBasemap();
+		return MapStore.get(MapConstants.basemap) || app.map.getBasemap();
 	};
 
 	// Check the hash to see if the basemap has been shared, if so update the store
 	var checkHash = function () {
 		var urlParams = urlUtils.urlToObject(location.href);
-		var basemap = urlParams && urlParams.query && urlParams.query[MAP_STORE_KEY];
-		if (basemap) {
-			MapStore.set(MAP_STORE_KEY, basemap);
-		}
+		var basemap = urlParams && urlParams.query && urlParams.query[MapConstants.basemap];
+		if (basemap) { MapActions.updateBasemap(basemap); }
 	};
 
 	/**
@@ -44,8 +41,7 @@ define([
 
 		componentDidMount: function () {
 			// Put the default value in the store before registering the callback
-			MapStore.set(MAP_STORE_KEY, this.state.selectedValue);
-			MapStore.registerCallback(MAP_STORE_KEY, this.storeUpdated);
+			MapStore.registerCallback(this.storeUpdated);
 			// Check the URL for a basemap
 			checkHash();
 		},
@@ -53,14 +49,11 @@ define([
 		storeUpdated: function () {
 			var selectedBasemap = getSelectedValue();
 			app.map.setBasemap(selectedBasemap);
-			
-			this.setState({
-				selectedValue: selectedBasemap
-			});
+			this.setState({ selectedValue: selectedBasemap });
 		},
 
 		basemapSelected: function (selectedProps, event) {
-			MapStore.set(MAP_STORE_KEY, selectedProps.value);
+			MapActions.updateBasemap(selectedProps.value);
 		},
 
 		/* jshint ignore:start */
@@ -99,9 +92,7 @@ define([
 		/* jshint ignore:end */
 
 		toggleGallery: function () {
-			this.setState({
-				open: !this.state.open
-			});
+			this.setState({ open: !this.state.open });
 		}
 
 	});

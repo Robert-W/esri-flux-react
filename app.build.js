@@ -15,6 +15,8 @@
 		'map': 'js/map',
 		'main': 'js/main',
 		'stores': 'js/stores',
+		'actions': 'js/actions',
+		'constants': 'js/constants',
 		'components': 'js/components'
 	},
 	name: 'js/bundle',
