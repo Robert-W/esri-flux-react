@@ -5,11 +5,23 @@ define([
 
 	var MapActions = {
 
-		updateBasemap: function (data) {
+		updateBasemap: function (basemap) {
 
 			Dispatcher.dispatch({
 				actionType: MapConstants.basemap,
-				data: data
+				data: basemap
+			});
+
+		},
+
+		extentUpdated: function (centerPoint, zoomLevel) {
+
+			Dispatcher.dispatch({
+				actionType: MapConstants.extent,
+				data: {
+					center: centerPoint,
+					zoom: zoomLevel
+				}
 			});
 
 		}

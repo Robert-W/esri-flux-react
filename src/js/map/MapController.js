@@ -1,18 +1,12 @@
 define([
 	'map/Map',
 	'map/MapConfig',
-	'stores/MapStore',
+	'actions/MapActions',
 	'components/MapWidgets',
 	// Esri/Dojo Modules
 	'dojo/on'
-], function (Map, MapConfig, MapStore, MapWidgets, on) {
+], function (Map, MapConfig, MapActions, MapWidgets, on) {
 	'use strict';
-
-	var STORE_KEYS = {
-		LON: 'y',
-		LAT: 'x',
-		ZOOM: 'z'
-	};
 
 	var MapController = {
 
@@ -59,9 +53,7 @@ define([
 			var center = evt.extent && evt.extent.getCenter(),
 					zoomLevel = evt.lod && evt.lod.level;
 
-			MapStore.set(STORE_KEYS.LON, center.getLongitude().toFixed(2));
-			MapStore.set(STORE_KEYS.LAT, center.getLatitude().toFixed(2));
-			MapStore.set(STORE_KEYS.ZOOM, zoomLevel);
+			MapActions.extentUpdated(center, zoomLevel);
 
 		}
 

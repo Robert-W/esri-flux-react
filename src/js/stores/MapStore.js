@@ -12,6 +12,7 @@ define([
 		/**
 		* Get value of a property from the store
 		* @param {string} key - name of property in the store
+		* @return {any object} - value stored
 		*/
 		get: function (key) {
 			return Store[key];
@@ -23,6 +24,14 @@ define([
 		*/
 		registerCallback: function (callback) {
 			Observers.push(callback);
+		},
+
+		/**
+		* Serialze the store for sharing
+		* @return {string} Stringified version of the store
+		*/
+		serialize: function () {
+			return JSON.stringify(Store);
 		}
 
 	};
@@ -53,15 +62,23 @@ define([
 	Dispatcher.register(function (payload) {
 
 		switch (payload.actionType) {
+
 			case MapConstants.basemap:
 				set(MapConstants.basemap, payload.data);
 				emit();
 			break;
+
+			case MapConstants.extent:
+				var data = payload.data;
+				set(MapConstants.extent, {
+					x: data.center.getLongitude().toFixed(2),
+					y: data.center.getLatitude().toFixed(2),
+					z: data.zoom
+				});
+			break;
 		}
 
 	});
-
-
 
 	return Interface;
 
