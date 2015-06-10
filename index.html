@@ -18,4 +18,13 @@ var dojoConfig = {
 	],
 	deps: ['dojo/domReady!'],
 	callback: function () {require(['js/bundle']);}
-};</script><script src="http://js.arcgis.com/3.13/init.js" async></script></body></html>
+};</script><script src="http://js.arcgis.com/3.13/init.js" async></script><script>(function () {
+	function loadCss (url) {
+		var sheet = document.createElement("link");
+    sheet.type = "text/css";
+    sheet.rel = "stylesheet";
+    sheet.href = url;
+    requestAnimationFrame(function () { document.getElementsByTagName("head")[0].appendChild(sheet); });
+	}
+	loadCss("http://js.arcgis.com/3.13/esri/css/esri.css");
+}())</script></body></html>
