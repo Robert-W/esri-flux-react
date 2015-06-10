@@ -17,12 +17,12 @@ var dojoConfig = {
 		['lodash', 'bower/lodash/lodash.min.js']
 	],
 	deps: ['dojo/domReady!'],
-	callback: function () { 
+	callback: function () {
+		require(['js/bundle']);
 		var sheet = document.createElement("link");
     sheet.type = "text/css";
     sheet.rel = "stylesheet";
     sheet.href = "http://js.arcgis.com/3.13/esri/css/esri.css";
     document.getElementsByTagName("head")[0].appendChild(sheet);
-		require(['js/bundle']); 
 	}
 };</script><script src="http://js.arcgis.com/3.13/init.js" async></script></body></html>
