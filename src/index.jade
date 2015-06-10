@@ -13,6 +13,7 @@ html
 			html,body{height:100%;width:100%;padding:0;margin:0;overflow:hidden;}
 		style
 			include css/app.css
+		link(rel='stylesheet', href='http://js.arcgis.com/#{esriVersion}/esri/css/esri.css')
 	body
 		//- Import SVG's
 		include templates/svg.jade
@@ -46,13 +47,6 @@ html
 					['lodash', 'bower/lodash/lodash.min.js']
 				],
 				deps: ['dojo/domReady!'],
-				callback: function () {
-					require(['js/bundle']);
-					var sheet = document.createElement("link");
-			    sheet.type = "text/css";
-			    sheet.rel = "stylesheet";
-			    sheet.href = "http://js.arcgis.com/#{esriVersion}/esri/css/esri.css";
-			    document.getElementsByTagName("head")[0].appendChild(sheet);
-				}
+				callback: function () {require(['js/bundle']);}
 			};
 		script(src='http://js.arcgis.com/#{esriVersion}/init.js', async)
