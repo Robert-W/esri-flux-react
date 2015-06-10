@@ -5,16 +5,17 @@ define([
 ], function (AppConfig, MapController) {
 	'use strict';
 
+	function loadCss (url) {
+		var sheet = document.createElement("link");
+    sheet.type = "text/css";
+    sheet.rel = "stylesheet";
+    sheet.href = url;
+    document.getElementsByTagName("head")[0].appendChild(sheet);
+	}
+
 	var Main = {
 
 		init: function () {
-
-			var sheet = document.createElement("link");
-	    sheet.type = "text/css";
-	    sheet.rel = "stylesheet";
-	    sheet.href = "http://js.arcgis.com/3.13/esri/css/esri.css";
-	    document.getElementsByTagName("head")[0].appendChild(sheet);
-			
 			// Create Global Object with debug options, only store commonly accessed elements
 			window.app = {
 				debugEnabled: true,
@@ -30,9 +31,15 @@ define([
 			};
 
 			// Perform all necessary setup in the apply configurations function
+			this.lazyloadStylesheets();
 			this.applyConfigurations();
 			this.initializeApp();
 
+		},
+
+		lazyloadStylesheets: function () {
+			app.debug('main >>> applyConfigurations');
+			loadCss("http://js.arcgis.com/3.13/esri/css/esri.css");
 		},
 
 		applyConfigurations: function () {
