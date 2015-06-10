@@ -5,14 +5,6 @@ define([
 ], function (AppConfig, MapController) {
 	'use strict';
 
-	function loadCss (url) {
-		var sheet = document.createElement("link");
-    sheet.type = "text/css";
-    sheet.rel = "stylesheet";
-    sheet.href = url;
-    requestAnimationFrame(function () { document.getElementsByTagName("head")[0].appendChild(sheet); });
-	}
-
 	var Main = {
 
 		init: function () {
@@ -31,15 +23,9 @@ define([
 			};
 
 			// Perform all necessary setup in the apply configurations function
-			this.lazyloadStylesheets();
 			this.applyConfigurations();
 			this.initializeApp();
 
-		},
-
-		lazyloadStylesheets: function () {
-			app.debug('main >>> lazyloadStylesheets');
-			loadCss("http://js.arcgis.com/3.13/esri/css/esri.css");
 		},
 
 		applyConfigurations: function () {
