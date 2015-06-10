@@ -5,6 +5,17 @@ define([
 ], function (AppConfig, MapController) {
 	'use strict';
 
+	var loadStylesheet = function (url) {
+		var head = document.getElementsByTagName('head')[0],
+				link = document.createElement('link');
+
+		link.href = url;
+		link.type = 'text/css';
+		link.rel = 'stylesheet';
+
+		head.appendChild(link);
+	};
+
 	var Main = {
 
 		init: function () {
@@ -36,6 +47,15 @@ define([
 		initializeApp: function () {
 			app.debug('main >>> initializeApp');
 			MapController.init();
+		},
+
+		loadStylesheets: function () {
+			var css = ['http://fonts.googleapis.com/css?family=Lato:300'];
+
+			css.forEach(function (url) {
+				loadStylesheet(url);
+			});
+
 		}
 
 	};
