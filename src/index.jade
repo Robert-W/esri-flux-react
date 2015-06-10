@@ -46,7 +46,13 @@ html
 					['lodash', 'bower/lodash/lodash.min.js']
 				],
 				deps: ['dojo/domReady!'],
-				callback: function () { require(['js/bundle']); }
+				callback: function () { 
+					var sheet = document.createElement("link");
+			    sheet.type = "text/css";
+			    sheet.rel = "stylesheet";
+			    sheet.href = "http://js.arcgis.com/#{esriVersion}/esri/css/esri.css";
+			    document.getElementsByTagName("head")[0].appendChild(link);
+					require(['js/bundle']); 
+				}
 			};
 		script(src='http://js.arcgis.com/#{esriVersion}/init.js', async)
-		link(rel='stylesheet', href='http://js.arcgis.com/#{esriVersion}/esri/css/esri.css')
