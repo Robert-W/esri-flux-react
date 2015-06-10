@@ -8,6 +8,12 @@ define([
 	var Main = {
 
 		init: function () {
+
+			var sheet = document.createElement("link");
+	    sheet.type = "text/css";
+	    sheet.rel = "stylesheet";
+	    sheet.href = "http://js.arcgis.com/3.13/esri/css/esri.css";
+	    document.getElementsByTagName("head")[0].appendChild(sheet);
 			
 			// Create Global Object with debug options, only store commonly accessed elements
 			window.app = {
