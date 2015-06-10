@@ -10,7 +10,7 @@ define([
     sheet.type = "text/css";
     sheet.rel = "stylesheet";
     sheet.href = url;
-    document.getElementsByTagName("head")[0].appendChild(sheet);
+    requestAnimationFrame(function () { document.getElementsByTagName("head")[0].appendChild(sheet); });
 	}
 
 	var Main = {
@@ -18,7 +18,7 @@ define([
 		init: function () {
 			// Create Global Object with debug options, only store commonly accessed elements
 			window.app = {
-				debugEnabled: true,
+				debugEnabled: false,
 				debug: function (message) {
 					if (this.debugEnabled) {
 						if (typeof message === 'string') {
@@ -38,7 +38,7 @@ define([
 		},
 
 		lazyloadStylesheets: function () {
-			app.debug('main >>> applyConfigurations');
+			app.debug('main >>> lazyloadStylesheets');
 			loadCss("http://js.arcgis.com/3.13/esri/css/esri.css");
 		},
 
