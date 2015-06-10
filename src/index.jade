@@ -28,6 +28,15 @@ html
 		//- Link Esri Library now
 		script.
 			var base = location.pathname.replace(/\/[^/]+$/, '');
+			var loadCss = function(url){
+				var sheet = document.createElement("link");
+				sheet.type = "text/css";
+				sheet.rel = "stylesheet";
+				sheet.href = url;
+				requestAnimationFrame(function () { 
+					document.getElementsByTagName("head")[0].appendChild(sheet); 
+				});
+			}
 			var dojoConfig = {
 				parseOnLoad: false,
 				async: true,
@@ -46,17 +55,6 @@ html
 					['lodash', 'bower/lodash/lodash.min.js']
 				],
 				deps: ['dojo/domReady!'],
-				callback: function () {require(['js/bundle']);}
+				callback: function () {require(['js/bundle']);loadCss("http://js.arcgis.com/#{esriVersion}/esri/css/esri.css");}
 			};
 		script(src='http://js.arcgis.com/#{esriVersion}/init.js', async)
-		script.
-			(function () {
-				function loadCss (url) {
-					var sheet = document.createElement("link");
-			    sheet.type = "text/css";
-			    sheet.rel = "stylesheet";
-			    sheet.href = url;
-			    requestAnimationFrame(function () { document.getElementsByTagName("head")[0].appendChild(sheet); });
-				}
-				loadCss("http://js.arcgis.com/#{esriVersion}/esri/css/esri.css");
-			}())
