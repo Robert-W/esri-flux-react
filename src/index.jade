@@ -11,8 +11,8 @@ html
 		//- Inline Critical CSS only
 		style.
 			html,body{height:100%;width:100%;padding:0;margin:0;overflow:hidden;}
-		//- Link CSS Here
-		link(rel='stylesheet', href='css/app.css?#{appVersion}')
+		style
+			include css/app.css
 	body
 		//- Import SVG's
 		include templates/svg.jade
