@@ -69,11 +69,10 @@ define([
 			break;
 
 			case MapConstants.extent:
-				var data = payload.data;
 				set(MapConstants.extent, {
-					x: data.center.getLongitude().toFixed(2),
-					y: data.center.getLatitude().toFixed(2),
-					z: data.zoom
+					x: payload.data.center.getLongitude().toFixed(2),
+					y: payload.data.center.getLatitude().toFixed(2),
+					z: payload.data.zoom
 				});
 			break;
 		}
