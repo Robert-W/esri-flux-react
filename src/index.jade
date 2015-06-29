@@ -1,52 +1,52 @@
 doctype html
 html
-	head
-		title #{title}
-		//- Meta Tags
-		meta(name='author', content='#{author}')
-		meta(name='viewport', id='viewport', content='width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1')
-		meta(http-equiv='X-UA-Compatible', content='IE=Edge')
-		meta(charset='utf-8')
-		//- Meta Tags
-		//- Inline Critical CSS only
-		style.
-			html,body{height:100%;width:100%;padding:0;margin:0;overflow:hidden;}
-		style
-			include css/app.css
-	body
-		//- Import SVG's
-		include templates/svg.jade
-		header#app-header.app-header
-			span.app-title #{title}
-			span.app-subtitle #{subtitle}
-		div#app-body.app-body
-			div#map-loader
-				svg.loading-icon
-					use(xlink:href='#loading-indicator')
-			div#map
-				div#map-widgets-wrapper
-		//- Link Esri Library now
-		script.
-			var base = location.pathname.replace(/\/[^/]+$/, '');
-			var dojoConfig = {
-				parseOnLoad: false,
-				async: true,
-				cacheBust: '#{appVersion}',
-				packages: [
-					{ name: 'js', location: base + '/js' }, 
-					{ name: 'map', location: base + '/js/map' },
-					{ name: 'main', location: base + '/js/main' },
-					{ name: 'utils', location: base + '/js/utils' },
-					{ name: 'stores', location: base + '/js/stores' },
-					{ name: 'actions', location: base + '/js/actions' },
-					{ name: 'constants', location: base + '/js/constants' },
-					{ name: 'components', location: base + '/js/components' }
-				],
-				aliases: [
-					['react', 'bower/react/react.min.js'],
-					['lodash', 'bower/lodash/lodash.min.js']
-				],
-				deps: ['dojo/domReady!'],
-				callback: function () {require(['js/bundle']);}
-			};
-		script(src='http://js.arcgis.com/#{esriVersion}/init.js', async)
+  head
+    title #{title}
+    //- Meta Tags
+    meta(name='author', content='#{author}')
+    meta(name='viewport', id='viewport', content='width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1')
+    meta(http-equiv='X-UA-Compatible', content='IE=Edge')
+    meta(charset='utf-8')
+    //- Inline Critical CSS only
+    style.
+      html,body{height:100%;width:100%;padding:0;margin:0;overflow:hidden}
+    style
+      include css/app.css
+    body
+      //- Import SVGs
+      include templates/svg.jade
+      header#app-header.app-header
+        span.app-title #{title}
+        span.app-subtitle #{subtitle}
+      div#app-body.app-body
+        div#map-loader
+          span.loading-icon
+            use(xlink:href='#loading-indicator')
+        div#map
+      //- Link in Esri js now
+      script.
+        var base = location.pathname.replace(/\/[^/]+$/, '');
+        var dojoConfig = {
+          parseOnLoad: false,
+          async: true,
+          cacheBust: '#{appVersion}',
+          packages: [
+            { name: 'js', location: base + '/js' }, 
+            { name: 'map', location: base + '/js/map' },
+            { name: 'bower', location: base + '/bower' },
+            { name: 'main', location: base + '/js/main' },
+            { name: 'utils', location: base + '/js/utils' },
+            { name: 'stores', location: base + '/js/stores' },
+            { name: 'actions', location: base + '/js/actions' },
+            { name: 'constants', location: base + '/js/constants' },
+            { name: 'components', location: base + '/js/components' }
+          ],
+          aliases: [
+            ['react', 'bower/react/react.min.js'],
+            ['lodash', 'bower/lodash/lodash.min.js'],
+            ['babel-polyfill', 'bower/babel-polyfill/browser-polyfill']
+          ],
+          deps: ['dojo/domReady!'],
+          callback: function () {require(['js/main']);}
+        };
+      script(src='http://js.arcgis.com/#{esriVersion}/init.js', async)
