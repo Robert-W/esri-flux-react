@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+    imagemin = require('gulp-imagemin'),
     umd = require('gulp-umd'),
     config = {
       copy: {
@@ -9,6 +10,11 @@ var gulp = require('gulp'),
       babel: {
         src: 'src/bower/babel-polyfill/browser-polyfill.js',
         build: 'build/bower/babel-polyfill/'
+      },
+      imagemin: {
+        src: 'src/css/images/*',
+        build: 'build/css/images',
+        dist: 'dist/css/images'
       }
     };
 
@@ -24,4 +30,22 @@ gulp.task('babel:polyfill', function () {
       namespace: function () {return 'window._babelPolyfill'}
     }))
     .pipe(gulp.dest(config.babel.build))
-})
+});
+
+gulp.task('imagemin:build', function () {
+  return gulp.src(config.imagemin.src)
+    .pipe(imagemin({
+      optimizationLevel: 5,
+      progressive: true
+    }))
+    .pipe(gulp.dest(config.imagemin.build));
+});
+
+gulp.task('imagemin:dist', function () {
+  return gulp.src(config.imagemin.src)
+    .pipe(imagemin({
+      optimizationLevel: 7,
+      progressive: true
+    }))
+    .pipe(gulp.dest(config.imagemin.dist));
+});
