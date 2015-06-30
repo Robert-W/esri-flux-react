@@ -1,13 +1,20 @@
 import {Dispatcher as dispatcher} from 'js/dispatcher'
 import constants from 'constants/MapConstants'
 import {map as config} from 'js/config'
+import Deferred from 'dojo/Deferred'
 import assert from 'utils/assert'
 import EsriMap from 'esri/map'
+
 
 export const MapActions = {
 
   createMap () {
+    var deferred = new Deferred();
     app.map = new EsriMap(config.id, config.options);
+    app.map.on('load', function () {
+      deferred.resolve();
+    });
+    return deferred;
   },
 
   setBasemap (basemap) {

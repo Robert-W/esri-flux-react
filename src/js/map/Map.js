@@ -5,15 +5,24 @@ import React from 'react'
 
 export class Map extends React.Component {
 
+  constructor (props) {
+    super(props);
+    this.state = { loaded: false };
+  }
+
   componentDidMount () {
-    actions.createMap();
+    actions.createMap().then(() => {
+      this.setState({ loaded: true });
+    });
   }
 
   render () {
       return (
         <div id={config.id}>
           <div className='map-widgets-wrapper'>
-            <BasemapGallery />
+            {!this.state.loaded ? null :
+                <BasemapGallery />
+            }
           </div>
         </div>
       );

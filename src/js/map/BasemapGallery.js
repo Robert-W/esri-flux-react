@@ -3,24 +3,30 @@ import BasemapGalleryItem from 'map/BasemapGalleryItem'
 import constants from 'constants/MapConstants'
 import MapStore from 'stores/MapStore'
 import {basemaps} from 'js/config'
+import hash from 'utils/hash'
 import React from 'react'
 
 const imagePrefix = 'css/images/';
 
-const getBasemap = () => {
-  return MapStore.get(constants.basemap) || app.map.getBasemap();
-}
+const getBasemapFromHash = () => hash.get(constants.basemap);
+const getBasemap = () => MapStore.get(constants.basemap) || app.map.getBasemap();
 
 export class BasemapGallery extends React.Component {
 
   constructor (props) {
     super(props);
+
     this.state = {
       open: false,
-      selectedValue: undefined
+      selectedValue: getBasemap()
     };
+  }
 
+  componentDidMount () {
     MapStore.registerCallback(this.onStoreChange.bind(this));
+    // If their is a basemap present in the hash, use that basemap
+    let basemap = getBasemapFromHash();
+    if (basemap) { actions.setBasemap(basemap); }
   }
 
   render () {
