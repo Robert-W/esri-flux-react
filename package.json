@@ -20,7 +20,8 @@
     "imagemin:dist": "gulp imagemin:dist",
     "stylus:dist": "stylus src/css/base.styl --compress & stylus src/css/app.styl --compress -o dist/css",
     "jade:dist": "jade src/index.jade -O src/index.json -P -o dist",
-    "optimize": "npm run gulp && r.js -o app.build.js"
+    "babel:dist": "babel src --ignore 'bower' --modules amd --out-dir build",
+    "optimize": "npm run gulp && npm run babel:dist && r.js -o app.build.js"
 
   },
   "keywords": [
