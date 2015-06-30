@@ -11,7 +11,7 @@ html
     style.
       html,body{height:100%;width:100%;padding:0;margin:0;overflow:hidden}
     style
-      include css/app.css
+      include css/base.css
     body
       //- Import SVGs
       include templates/svg.jade
@@ -22,7 +22,7 @@ html
         div#map-loader
           span.loading-icon
             use(xlink:href='#loading-indicator')
-        div#map
+        div#map-container
       //- Link in Esri js now
       script.
         var base = location.pathname.replace(/\/[^/]+$/, '');
@@ -34,12 +34,10 @@ html
             { name: 'js', location: base + '/js' }, 
             { name: 'map', location: base + '/js/map' },
             { name: 'bower', location: base + '/bower' },
-            { name: 'main', location: base + '/js/main' },
             { name: 'utils', location: base + '/js/utils' },
             { name: 'stores', location: base + '/js/stores' },
             { name: 'actions', location: base + '/js/actions' },
-            { name: 'constants', location: base + '/js/constants' },
-            { name: 'components', location: base + '/js/components' }
+            { name: 'constants', location: base + '/js/constants' }
           ],
           aliases: [
             ['react', 'bower/react/react.min.js'],

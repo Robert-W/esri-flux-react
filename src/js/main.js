@@ -1,9 +1,10 @@
-//import babelPolyfill from 'babel-polyfill'
+import babelPolyfill from 'babel-polyfill'
 import {config} from 'js/config'
 import {Map} from 'map/Map'
 import React from 'react'
 
-//if(!babelPolyfill) { alert('Error: babel-polyfill could not be detected.'); }
+if(!babelPolyfill) { alert('Error: babel-polyfill could not be detected.'); }
+//Look up compositions
 
 // Set up globals
 window.app = {
@@ -28,6 +29,7 @@ var loadCss = (url) => {
 var lazyloadStylesheets = () => {
   app.debug('main >>> lazyloadStylesheets');
   loadCss("http://js.arcgis.com/3.13/esri/css/esri.css");
+  loadCss("css/app.css");
 };
 
 var applyConfigurations = () => {
@@ -36,7 +38,7 @@ var applyConfigurations = () => {
 
 var initializeApp = () => {
   app.debug('main >>> initializeApp');
-  React.render(<Map />, document.getElementById('map'));
+  React.render(<Map />, document.getElementById('map-container'));
 };
 
 // Start the App

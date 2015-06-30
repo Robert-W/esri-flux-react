@@ -2,35 +2,16 @@
   "name": "esri-flux-react",
   "version": "1.0.0",
   "description": "Simple demo application using Esri's JavaScript API and React. It also shows how to use the Flux architecture in a map based application.",
-  "main": "index.js",
   "scripts": {
     "start": "npm run watch",
-    "watch": "npm run stylus:watch & npm run copy:watch & npm run jade:watch & npm run babel:watch",
-
-    "jade": "jade src/index.jade -O src/index.json -P -o build",
-    "jade:watch": "npm run jade -- --watch",
-    "jade:dist": "jade src/index.jade -o dist -O src/index.json",
-
-    "stylus": "gulp stylus",
-    "stylus:watch": "gulp stylus:watch",
-    "stylus:dist": "gulp stylus:dist",
-
-    "babel": "babel src --ignore 'bower' --modules amd --out-dir build",
-    "babel:watch": "npm run babel -- -w",
-    "babel:dist": "babel src --ignore 'bower' --modules amd --out-dir dist",
+    "watch": "npm run copy && npm run shim && npm run mkdirs && npm run stylus & npm run jade & npm run babel",
 
     "copy": "gulp copy",
-    "copy:watch": "gulp copy:watch",
-
-    "jsx:watch": "jsx src/js/components src/js/components --watch --harmony --extension jsx",
-
-
-    "build": "npm run clean:build && npm run mkdirs:build && npm run stylus:build && npm run jade:build && npm run copy:build:images && npm run optimize && exit 0",
-    "clean:build": "rm -rf build && mkdir build",
-    "mkdirs:build": "mkdir -p build/css && mkdir -p build/css/images",
-    "optimize": "npm run jsx:build && r.js -o app.build.js",
-    "jsx:build": "jsx src/js/components src/js/components --harmony --extension jsx",
-    "copy:build:images": "cp -r src/css/images/* build/css/images"
+    "shim": "gulp babel:polyfill",
+    "mkdirs": "mkdir -p build/css && mkdir -p build/css/images",
+    "stylus": "stylus src/css/base.styl -l --watch & stylus src/css/app.styl -o build/css -l --watch",
+    "jade": "jade src/index.jade -O src/index.json -P -o build --watch",
+    "babel": "babel src --ignore 'bower' --modules amd --out-dir build -w"
   },
   "keywords": [
     "esri",
@@ -47,14 +28,15 @@
     "jsx",
     "es2015",
     "esNext",
-    "es6"
+    "es6",
+    "babel"
   ],
   "author": "Robert Winterbottom",
   "license": "MIT",
   "dependencies": {
     "babel": "^5.6.14",
     "gulp": "^3.9.0",
-    "gulp-stylus": "^2.0.5",
+    "gulp-umd": "^0.2.0",
     "jade": "^1.9.2",
     "react-tools": "^0.13.1",
     "requirejs": "^2.1.17",

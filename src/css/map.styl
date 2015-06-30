@@ -1,5 +1,8 @@
-#map
+#map-container
 	background $mapBackground
+
+#map-container
+#map
 	height 100%
 	width 100%
 
@@ -14,20 +17,8 @@
 	z-index 1000
 	left 50%
 	top 50%
-	
+
 .loading-icon
 	height 100px
 	width 100px
-/** Loading Icon **/
-	
-/** Esri Overrides **/
-
-.esriSimpleSlider
-	border-radius(0)
-	
-.esriSimpleSliderDecrementButton:hover
-.esriSimpleSliderIncrementButton:hover
-	background-color $hoverBackground
-
-/** Esri Overrides **/	
 @require 'mapWidgets'

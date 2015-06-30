@@ -13,12 +13,10 @@
 		// Configured Packages
 		'js': 'js',
 		'map': 'js/map',
-		'main': 'js/main',
 		'utils': 'js/utils',
 		'stores': 'js/stores',
 		'actions': 'js/actions',
-		'constants': 'js/constants',
-		'components': 'js/components'
+		'constants': 'js/constants'
 	},
 	name: 'js/bundle',
 	out: 'build/js/bundle.js'
