@@ -9,6 +9,7 @@ import EsriMap from 'esri/map'
 export const MapActions = {
 
   createMap () {
+    app.debug('MapActions >>> createMap');
     var loadingIndicator = document.getElementById('map-loader');
     var deferred = new Promise((resolve, reject) => {
       app.map = new EsriMap(config.id, config.options);
@@ -21,6 +22,7 @@ export const MapActions = {
   },
 
   setBasemap (basemap) {
+    app.debug('MapActions >>> setBasemap');
     dispatcher.dispatch({
       actionType: constants.basemap,
       data: basemap
@@ -28,6 +30,7 @@ export const MapActions = {
   },
 
   extentChanged (centerPoint, zoomLevel) {
+    app.debug('MapActions >>> extentChanged');
     dispatcher.dispatch({
       actionType: constants.extent,
       data: {

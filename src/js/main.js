@@ -8,7 +8,7 @@ if(!babelPolyfill) { alert('Error: babel-polyfill could not be detected.'); }
 
 // Set up globals
 window.app = {
-  debugEnabled: true,
+  debugEnabled: false,
   debug: function (message) {
     if (this.debugEnabled) {
       var print = typeof message === 'string' ? console.log : console.dir;
