@@ -12,10 +12,10 @@ const Interface = {
   */
   get: key => store[key],
   /**
-  * Serialze the store for sharing
+  * Stringify the store for debugging
   * @return {string} Stringified version of the store
   */
-  serialize: () => JSON.stringify(store),
+  debug: () => JSON.stringify(store),
   /**
   * Register a observer for the store
   * @param {function} callback - callback function to invoke when the store changes

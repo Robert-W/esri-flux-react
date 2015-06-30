@@ -9,6 +9,22 @@ import EsriMap from 'esri/map'
 export const MapActions = {
 
   createMap () {
+
+    // TODO Use Native Promises
+    // Example
+    /*
+    var p1 = new Promise(function (reject, resolve) {
+      setTimeout(function () {
+        resolve(5000);
+      }, 5000);
+    });
+
+    p1.then(function (resolveParam) {
+
+    }).catch(function (rejectParam) {
+
+    });
+    */
     var deferred = new Deferred();
     app.map = new EsriMap(config.id, config.options);
     app.map.on('load', function () {
