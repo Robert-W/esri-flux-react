@@ -1,6 +1,6 @@
 /* jshint ignore:start */
 ({
-	baseUrl: 'src',
+	baseUrl: 'build',
 	paths: {
 		// Empty Modules/Aliases
 		'dojo': 'empty:',
@@ -10,6 +10,7 @@
 		// libs
 		'react': 'bower/react/react.min',
 		'lodash': 'bower/lodash/lodash.min',
+		'babel-polyfill': 'bower/babel-polyfill/browser-polyfill',
 		// Configured Packages
 		'js': 'js',
 		'map': 'js/map',
@@ -18,7 +19,7 @@
 		'actions': 'js/actions',
 		'constants': 'js/constants'
 	},
-	name: 'js/bundle',
-	out: 'build/js/bundle.js'
+	name: 'js/main',
+	out: 'dist/js/main.js'
 })
 /* jshint ignore:end */

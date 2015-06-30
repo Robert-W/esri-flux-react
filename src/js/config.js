@@ -7,9 +7,8 @@ export const config = {
       sliderPosition: 'top-right',
       force3DTransforms: true,
       basemap: 'terrain',
+      center: [-102, 39],
       fadeOnZoom: true,
-      centerX: -102,
-      centerY: 39,
       zoom: 4
     }
   },
