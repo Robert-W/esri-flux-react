@@ -11,7 +11,6 @@ export const MapActions = {
   createMap () {
     var loadingIndicator = document.getElementById('map-loader');
     var deferred = new Promise((resolve, reject) => {
-      app.debug(config.options);
       app.map = new EsriMap(config.id, config.options);
       app.map.on('load', () => {
         loadingIndicator.className = 'hidden';
