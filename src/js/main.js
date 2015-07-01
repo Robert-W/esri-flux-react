@@ -1,14 +1,13 @@
-import babelPolyfill from 'babel-polyfill'
-import {config} from 'js/config'
-import {Map} from 'map/Map'
-import React from 'react'
+import babelPolyfill from 'babel-polyfill';
+import {Map} from 'map/Map';
+import React from 'react';
 
 if(!babelPolyfill) { alert('Error: babel-polyfill could not be detected.'); }
 //Look up compositions
 
 // Set up globals
 window.app = {
-  debugEnabled: false,
+  debugEnabled: true,
   debug: function (message) {
     if (this.debugEnabled) {
       var print = typeof message === 'string' ? console.log : console.dir;

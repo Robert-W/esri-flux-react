@@ -25,5 +25,5 @@ export const config = {
 
 };
 
-export const map = config.map
-export const basemaps = config.uiComponents.basemaps
+export const map = config.map;
+export const basemaps = config.uiComponents.basemaps;

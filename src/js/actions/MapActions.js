@@ -1,9 +1,7 @@
-import {Dispatcher as dispatcher} from 'js/dispatcher'
-import constants from 'constants/MapConstants'
-import {map as config} from 'js/config'
-import Deferred from 'dojo/Deferred'
-import assert from 'utils/assert'
-import EsriMap from 'esri/map'
+import {Dispatcher as dispatcher} from 'js/dispatcher';
+import constants from 'constants/MapConstants';
+import {map as config} from 'js/config';
+import EsriMap from 'esri/map';
 
 
 export const MapActions = {
@@ -40,4 +38,4 @@ export const MapActions = {
     });
   }
 
-}
+};

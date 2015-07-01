@@ -1,10 +1,10 @@
-import {Dispatcher as dispatcher} from 'js/dispatcher'
-import constants from 'constants/MapConstants'
+import {Dispatcher as dispatcher} from 'js/dispatcher';
+import constants from 'constants/MapConstants';
 
 let store = {};
 let observers = [];
 
-const Interface = {
+export default {
   /**
   * Get value of a property from the store
   * @param {string} key - name of property in the store
@@ -25,8 +25,6 @@ const Interface = {
   }
 };
 
-export { Interface as default };
-
 /**
 * @param {string} key - name of property in the store
 * @param {AnyObject} value - value to be stored
@@ -38,7 +36,7 @@ const set = (key, value) => {
 * Update anyone observing this store
 */
 const emit = () => {
-  observers.forEach(observer => { observer() })
+  observers.forEach(observer => { observer(); });
 };
 
 dispatcher.register(payload => {

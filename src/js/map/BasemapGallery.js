@@ -1,10 +1,10 @@
-import {MapActions as actions} from 'actions/MapActions'
-import BasemapGalleryItem from 'map/BasemapGalleryItem'
-import constants from 'constants/MapConstants'
-import MapStore from 'stores/MapStore'
-import {basemaps} from 'js/config'
-import hash from 'utils/hash'
-import React from 'react'
+import {MapActions as actions} from 'actions/MapActions';
+import BasemapGalleryItem from 'map/BasemapGalleryItem';
+import constants from 'constants/MapConstants';
+import MapStore from 'stores/MapStore';
+import {basemaps} from 'js/config';
+import hash from 'utils/hash';
+import React from 'react';
 
 const imagePrefix = 'css/images/';
 
@@ -43,7 +43,7 @@ export class BasemapGallery extends React.Component {
           {this.renderBasemapItems(basemaps)}
         </ul>
       </div>
-    )
+    );
   }
 
   renderBasemapItems (basemaps) {
@@ -56,7 +56,7 @@ export class BasemapGallery extends React.Component {
           active={this.state.selectedValue === basemap.value}
           click={this.onSelect}
         />
-      )
+      );
     });
   }
 
