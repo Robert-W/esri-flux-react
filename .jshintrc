@@ -4,5 +4,5 @@
 	"undef": true,
 	"unused": "vars",
 	"strict": false,
-	"predef": ["app","alert","window","console","document","requestAnimationFrame","location"]
+	"predef": ["app","alert","window","console","document","requestAnimationFrame","location","define","require"]
 }

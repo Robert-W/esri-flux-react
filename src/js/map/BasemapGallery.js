@@ -1,14 +1,14 @@
 import {MapActions as actions} from 'actions/MapActions';
 import BasemapGalleryItem from 'map/BasemapGalleryItem';
 import constants from 'constants/MapConstants';
+import urlParams from 'utils/urlParams';
 import MapStore from 'stores/MapStore';
 import {basemaps} from 'js/config';
-import hash from 'utils/hash';
 import React from 'react';
 
 const imagePrefix = 'css/images/';
 
-const getBasemapFromHash = () => hash.get(constants.basemap);
+const getBasemapFromUrl = () => urlParams.get(constants.basemap);
 const getBasemap = () => MapStore.get(constants.basemap) || app.map.getBasemap();
 
 export class BasemapGallery extends React.Component {
@@ -25,7 +25,7 @@ export class BasemapGallery extends React.Component {
   componentDidMount () {
     MapStore.registerCallback(this.onStoreChange.bind(this));
     // If their is a basemap present in the hash, use that basemap
-    let basemap = getBasemapFromHash();
+    let basemap = getBasemapFromUrl();
     if (basemap) { actions.setBasemap(basemap); }
   }
 
