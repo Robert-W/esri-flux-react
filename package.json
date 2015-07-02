@@ -6,16 +6,20 @@
     "start": "npm run watch",
     "watch": "gulp build && npm run mkdirs && npm run stylus & npm run jade & npm run babel",
     "dist": "rm -rf dist && gulp dist && npm run stylus:dist && npm run jade:dist && npm run optimize",
-
     "mkdirs": "mkdir -p build/css",
     "stylus": "stylus src/css/base.styl -l --watch & stylus src/css/app.styl -o build/css -l --watch",
     "jade": "jade src/index.jade -O src/index.json -P -o build --watch",
     "babel": "babel src --ignore 'bower,dojoConfig.js' --modules amd --out-dir build -w",
-
     "stylus:dist": "stylus src/css/base.styl --compress & stylus src/css/app.styl --compress -o dist/css",
     "jade:dist": "jade src/index.jade -O src/index.json -o dist",
     "babel:dist": "babel src --ignore 'bower' --modules amd --out-dir build",
-    "optimize": "npm run babel:dist && r.js -o app.build.js"
+    "optimize": "npm run babel:dist && r.js -o app.build.js",
+    "test": "jest --verbose"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "testFileExtensions": ["js"],
+    "moduleFileExtensions": ["js"]
   },
   "keywords": [
     "esri",
@@ -48,6 +52,8 @@
     "stylus": "^0.50.0"
   },
   "devDependencies": {
+    "babel-jest": "^5.3.0",
+    "jest-cli": "^0.4.14",
     "react": "^0.13.1"
   }
 }
