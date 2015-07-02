@@ -26,10 +26,10 @@ gulp.task('copy', function () {
 gulp.task('babel:polyfill', function () {
   return gulp.src(config.babel.src)
     .pipe(umd({
-      exports: function () {return '_babelPolyfill'},
-      namespace: function () {return 'window._babelPolyfill'}
+      exports: function () {return '_babelPolyfill';},
+      namespace: function () {return 'window._babelPolyfill';}
     }))
-    .pipe(gulp.dest(config.babel.build))
+    .pipe(gulp.dest(config.babel.build));
 });
 
 gulp.task('imagemin:build', function () {
@@ -49,3 +49,6 @@ gulp.task('imagemin:dist', function () {
     }))
     .pipe(gulp.dest(config.imagemin.dist));
 });
+
+gulp.task('build', ['copy', 'babel:polyfill', 'imagemin:build']);
+gulp.task('dist', ['copy', 'babel:polyfill', 'imagemin:dist']);

@@ -4,25 +4,18 @@
   "description": "Simple demo application using Esri's JavaScript API and React. It also shows how to use the Flux architecture in a map based application.",
   "scripts": {
     "start": "npm run watch",
-    "watch": "npm run gulp && npm run imagemin && npm run mkdirs && npm run stylus & npm run jade & npm run babel",
-    "dist": "npm run prep && npm run imagemin:dist && npm run stylus:dist && npm run jade:dist && npm run optimize",
+    "watch": "gulp build && npm run mkdirs && npm run stylus & npm run jade & npm run babel",
+    "dist": "rm -rf dist && gulp dist && npm run stylus:dist && npm run jade:dist && npm run optimize",
 
-    "gulp": "npm run copy && npm run shim",
-    "copy": "gulp copy",
-    "shim": "gulp babel:polyfill",
-    "imagemin": "gulp imagemin:build",
     "mkdirs": "mkdir -p build/css",
     "stylus": "stylus src/css/base.styl -l --watch & stylus src/css/app.styl -o build/css -l --watch",
     "jade": "jade src/index.jade -O src/index.json -P -o build --watch",
-    "babel": "babel src --ignore 'bower' --modules amd --out-dir build -w",
+    "babel": "babel src --ignore 'bower,dojoConfig.js' --modules amd --out-dir build -w",
 
-    "prep": "rm -rf dist && mkdir -p dist/css",
-    "imagemin:dist": "gulp imagemin:dist",
     "stylus:dist": "stylus src/css/base.styl --compress & stylus src/css/app.styl --compress -o dist/css",
-    "jade:dist": "jade src/index.jade -O src/index.json -P -o dist",
+    "jade:dist": "jade src/index.jade -O src/index.json -o dist",
     "babel:dist": "babel src --ignore 'bower' --modules amd --out-dir build",
-    "optimize": "npm run gulp && npm run babel:dist && r.js -o app.build.js"
-
+    "optimize": "npm run babel:dist && r.js -o app.build.js"
   },
   "keywords": [
     "esri",
