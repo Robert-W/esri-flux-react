@@ -3,7 +3,6 @@ import {Map} from 'map/Map';
 import React from 'react';
 
 if(!babelPolyfill) { alert('Error: babel-polyfill could not be detected.'); }
-//Look up compositions
 
 // Set up globals
 window.app = {
@@ -15,6 +14,16 @@ window.app = {
     }
   }
 };
+
+// Shim for rAF with timeout for callback
+window.requestAnimationFrame = (function () {
+  return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    function (callback) { window.setTimeout(callback, 1000 / 60); };
+})();
 
 // Helper Functions
 var loadCss = (url) => {
