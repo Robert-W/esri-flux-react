@@ -6,7 +6,7 @@ import MapStore from 'js/stores/MapStore';
 import {basemaps} from 'js/config';
 import React from 'react';
 
-let getCurrentBasemap = () => MapStore.get(constants.basemap) || app.map.basemap.id;
+let getCurrentBasemap = () => MapStore.get(constants.basemap) || app.map.getBasemap();
 let getBasemapFromUrl = () => getUrlParams(location.href);
 
 export class BasemapGallery extends React.Component {

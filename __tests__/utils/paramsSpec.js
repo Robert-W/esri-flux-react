@@ -73,15 +73,15 @@ describe('Utilities - params.toQuery', () => {
 describe('Utilities - params.getUrlParams', () => {
 
   it('should return an empty object if no path is provided', () => {
+    let result = params.getUrlParams();
+    expect(result).toEqual({});
+  });
+
+  it('should return a dictionary matching keys and values in the provided path', () => {
     var result = params.getUrlParams(strings.url);
     expect(result.foo).toEqual(objects.A.foo);
     expect(result.bar).toEqual(objects.A.bar);
     expect(result.scooby).toEqual(objects.A.scooby);
-  });
-
-  it('should return a dictionary matching keys and values in the provided path', () => {
-    let result = params.getUrlParams();
-    expect(result).toEqual({});
   });
 
 });

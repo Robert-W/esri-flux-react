@@ -11,19 +11,25 @@ export const config = {
   map: {
     id: 'map',
     options: {
+      navigationMode: 'css-transforms',
+      sliderPosition: 'top-right',
+      force3DTransforms: true,
       basemap: 'osm',
       center: [-102, 39],
-      zoom: 4
+      fadeOnZoom: true,
+      zoom: 4,
+      logo: false,
+      showAttribution: false
     }
   },
 
   ui: {
     basemaps: [
       { label: 'Open Street Map', value: 'osm', iconClass: 'basemap-osm' },
-      { label: 'Vector Streets Night', value: 'vector-streets-night', iconClass: 'basemap-vsn' },
-      { label: 'Vector Streets Mobile', value: 'vector-streets-mobile', iconClass: 'basemap-vsm' },
-      { label: 'Vector Canvas Light', value: 'vector-canvas-light', iconClass: 'basemap-vcl' },
-      { label: 'Vector Canvas Dark', value: 'vector-canvas-dark', iconClass: 'basemap-vcd' }
+      { label: 'Terrain', value: 'terrain', iconClass: 'basemap-terrain' },
+      { label: 'Dark Gray Canvas', value: 'dark-gray', iconClass: 'basemap-dg' },
+      { label: 'Imagery with Labels', value: 'hybrid', iconClass: 'basemap-imagery' },
+      { label: 'National Geographic', value: 'national-geographic', iconClass: 'basemap-nat-geo' }
     ]
   }
 

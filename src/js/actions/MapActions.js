@@ -1,6 +1,6 @@
 import {MAP as constants} from 'js/constants/AppConstants';
 import {Dispatcher as dispatcher} from 'js/dispatcher';
-import EsriMap from 'esri/Map';
+import EsriMap from 'esri/map';
 
 export const MapActions = {
   /**
@@ -13,7 +13,7 @@ export const MapActions = {
 
     var deferred = new Promise((resolve) => {
       app.map = new EsriMap(mapConfig.id, mapConfig.options);
-      app.map.then(() => {
+      app.map.on('load', () => {
         resolve();
       });
     });
