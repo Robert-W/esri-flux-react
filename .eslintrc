@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "amd": true,
+    "es6": true
+  },
+  "ecmaFeatures": {
+    "modules": true,
+    "jsx": true
+  },
+  "globals": {
+    "React": true,
+    "app": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "quotes": [1, "single", "avoid-escape"]
+  }
+}
