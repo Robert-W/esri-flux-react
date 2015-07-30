@@ -40,13 +40,13 @@ export class BasemapGallery extends React.Component {
           </svg>
         </div>
         <ul className='basemap-gallery-item-list'>
-          {this.renderBasemapItems(basemaps)}
+          {this.renderBasemapItems()}
         </ul>
       </div>
     );
   }
 
-  renderBasemapItems (basemaps) {
+  renderBasemapItems () {
     return basemaps.map(basemap => {
       return (
         <BasemapGalleryItem

@@ -4,6 +4,6 @@
 * @param {string} message - Message to be included with Error when condition is falsy
 */
 export default function (condition, message) {
-  if (condition) return;
+  if (condition) { return; }
   throw new Error(`Assertion Error: ${message}`);
 }
