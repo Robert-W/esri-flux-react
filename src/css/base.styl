@@ -21,9 +21,6 @@ body
 	background $bodyBackground
 	font-family $fontFamily
 
-svg
-	pointer-events none
-
 .app-header
 	background $headerBackground
 	color $headerFontColor
@@ -41,6 +38,7 @@ svg
 	right 0
 	left 0
 
+@require 'loader'
 @require 'header'
 @require 'map'
 /* Import this last so we dont need important tags in it to override styles */

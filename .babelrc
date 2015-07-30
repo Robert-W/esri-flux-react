@@ -1,0 +1,10 @@
+{
+  "stage": 0,
+  "sourceMaps": false,
+  "ignore": [
+    "vendor",
+    "bower",
+    "node_modules",
+    "src/prerender.js"
+  ]
+}

@@ -1,29 +1,36 @@
 export const config = {
+  app: {
+    'title': 'Simple Map',
+    'subtitle': 'Boilerplate for using Flux and React with Esri\'s JavaScript API.'
+  },
+
+  arcgis: {
+    css: 'http://js.arcgis.com/3.14/esri/css/esri.css'
+  },
 
   map: {
     id: 'map',
     options: {
-      navigationMode: 'css-transforms',
-      sliderPosition: 'top-right',
-      force3DTransforms: true,
-      basemap: 'terrain',
+      basemap: 'osm',
       center: [-102, 39],
-      fadeOnZoom: true,
       zoom: 4
     }
   },
 
-  uiComponents: {
+  ui: {
     basemaps: [
-      { label: 'Terrain', value: 'terrain', icon: 'terrain_labels.jpg' },
-      { label: 'Dark Gray Canvas', value: 'dark-gray', icon: 'DGCanvasBase.png' },
-      { label: 'Imagery with Labels', value: 'hybrid', icon: 'imagery_labels.jpg' },
-      { label: 'National Geographic', value: 'national-geographic', icon: 'natgeo.jpg' },
-      { label: 'Open Street Map', value: 'osm', icon: 'temposm.jpg' }
+      { label: 'Open Street Map', value: 'osm', iconClass: 'basemap-osm' },
+      { label: 'Vector Streets Night', value: 'vector-streets-night', iconClass: 'basemap-vsn' },
+      { label: 'Vector Streets Mobile', value: 'vector-streets-mobile', iconClass: 'basemap-vsm' },
+      { label: 'Vector Canvas Light', value: 'vector-canvas-light', iconClass: 'basemap-vcl' },
+      { label: 'Vector Canvas Dark', value: 'vector-canvas-dark', iconClass: 'basemap-vcd' }
     ]
   }
 
 };
 
-export const map = config.map;
-export const basemaps = config.uiComponents.basemaps;
+export const appConfig = config.app;
+export const mapConfig = config.map;
+export const arcgisConfig = config.arcgis;
+/* UI Config Exports */
+export const basemaps = config.ui.basemaps;

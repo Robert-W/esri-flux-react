@@ -6,10 +6,10 @@ class BasemapGalleryItem extends React.Component {
       return (
         <li
           key={this.props.value}
-          onClick={this.props.click.bind(this, this.props)}
-          className={'basemap-gallery-item pointer' + (this.props.active ? ' active' : '')}
+          onClick={this.props.click.bind(this, this.props.value)}
+          className={'basemap-gallery-item relative pointer' + (this.props.active ? ' active' : '')}
         >
-          <span className='basemap-gallery-item-icon' style={{ background: "url('" + this.props.icon + "')" }}/>
+          <span className={`basemap-gallery-item-icon ${this.props.iconClass}`}/>
           <div className='basemap-gallery-item-label'>{this.props.label}</div>
         </li>
       );
@@ -20,7 +20,7 @@ class BasemapGalleryItem extends React.Component {
 BasemapGalleryItem.propTypes = {
   label: React.PropTypes.string.isRequired,
   value: React.PropTypes.string.isRequired,
-  icon: React.PropTypes.string.isRequired,
+  iconClass: React.PropTypes.string.isRequired,
   click: React.PropTypes.func.isRequired,
   active: React.PropTypes.bool.isRequired
 };

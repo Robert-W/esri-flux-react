@@ -1,8 +1,7 @@
 {
   "name": "esri-flux-react",
   "dependencies": {
-    "react": "~0.13.1",
-    "lodash": "~3.7.0",
+    "react": "~0.13.3",
     "babel-polyfill": "~0.0.1"
   }
 }

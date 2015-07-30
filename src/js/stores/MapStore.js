@@ -1,8 +1,18 @@
+import {MAP as constants} from 'js/constants/AppConstants';
 import {Dispatcher as dispatcher} from 'js/dispatcher';
-import constants from 'constants/MapConstants';
 
 let store = {};
-let observers = [];
+let callbacks = [];
+
+/**
+* @param {string} key - name of property in the store
+* @param {AnyObject} value - value to be stored
+*/
+const set = (key, value) => { store[key] = value; };
+/**
+* Update anyone observing this store
+*/
+const emit = () => { callbacks.forEach(observer => { observer(); }); };
 
 export default {
   /**
@@ -20,23 +30,7 @@ export default {
   * Register a observer for the store
   * @param {function} callback - callback function to invoke when the store changes
   */
-  registerCallback: callback => {
-    observers.push(callback);
-  }
-};
-
-/**
-* @param {string} key - name of property in the store
-* @param {AnyObject} value - value to be stored
-*/
-const set = (key, value) => {
-  store[key] = value;
-};
-/**
-* Update anyone observing this store
-*/
-const emit = () => {
-  observers.forEach(observer => { observer(); });
+  registerCallback: callback => { callbacks.push(callback); }
 };
 
 dispatcher.register(payload => {
@@ -45,13 +39,6 @@ dispatcher.register(payload => {
     case constants.basemap:
       set(constants.basemap, payload.data);
       emit();
-    break;
-    case constants.extent:
-      set(constants.extent, {
-        x: payload.data.center.getLongitude().toFixed(2),
-        y: payload.data.center.getLatitude().toFixed(2),
-        z: payload.data.zoom
-      });
     break;
   }
 

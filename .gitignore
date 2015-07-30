@@ -1,10 +1,9 @@
 # Ignore the build and dist directories
 build
 dist
-temp
 
 # Ignore components installed by bower
-bower
+vendor
 
 # Ignore these, just do it
 node_modules

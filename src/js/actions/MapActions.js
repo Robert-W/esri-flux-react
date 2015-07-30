@@ -1,40 +1,36 @@
+import {MAP as constants} from 'js/constants/AppConstants';
 import {Dispatcher as dispatcher} from 'js/dispatcher';
-import constants from 'constants/MapConstants';
-import {map as config} from 'js/config';
-import EsriMap from 'esri/map';
-
+import EsriMap from 'esri/Map';
 
 export const MapActions = {
-
-  createMap () {
+  /**
+  * Simple method to create a new Map
+  * @param {object} mapConfig - config object containing id and options
+  * @return {Promise} deferred - Promise that resolves on map load event
+  */
+  createMap (mapConfig) {
     app.debug('MapActions >>> createMap');
-    var loadingIndicator = document.getElementById('map-loader');
-    var deferred = new Promise((resolve, reject) => {
-      app.map = new EsriMap(config.id, config.options);
-      app.map.on('load', () => {
-        loadingIndicator.className = 'hidden';
+
+    var deferred = new Promise((resolve) => {
+      app.map = new EsriMap(mapConfig.id, mapConfig.options);
+      app.map.then(() => {
         resolve();
       });
     });
+
     return deferred;
   },
 
+  /**
+  * Method to update the basemap
+  * @param {string} basemap - the value of the basemap to be updated, should come from config.js basemaps
+  */
   setBasemap (basemap) {
     app.debug('MapActions >>> setBasemap');
+
     dispatcher.dispatch({
       actionType: constants.basemap,
       data: basemap
-    });
-  },
-
-  extentChanged (centerPoint, zoomLevel) {
-    app.debug('MapActions >>> extentChanged');
-    dispatcher.dispatch({
-      actionType: constants.extent,
-      data: {
-        center: centerPoint,
-        zoom: zoomLevel
-      }
     });
   }
 

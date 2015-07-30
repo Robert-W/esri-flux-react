@@ -1,8 +1,9 @@
 import babelPolyfill from 'babel-polyfill';
-import {Map} from 'map/Map';
+import {arcgisConfig} from 'js/config';
+import {App} from 'js/layout/App';
 import React from 'react';
 
-if(!babelPolyfill) { alert('Error: babel-polyfill could not be detected.'); }
+if (!babelPolyfill) { console.error('Error: babel-polyfill could not be detected.'); }
 
 // Set up globals
 window.app = {
@@ -25,31 +26,33 @@ window.requestAnimationFrame = (function () {
     function (callback) { window.setTimeout(callback, 1000 / 60); };
 })();
 
-// Helper Functions
+/**
+* @param {string} url - Url of resource to be loaded
+*/
 var loadCss = (url) => {
-  var sheet = document.createElement("link");
-  sheet.type = "text/css";
-  sheet.rel = "stylesheet";
+  var sheet = document.createElement('link');
+  sheet.rel = 'stylesheet';
+  sheet.type = 'text/css';
   sheet.href = url;
-  requestAnimationFrame(function () { document.getElementsByTagName("head")[0].appendChild(sheet); });
+  requestAnimationFrame(function () { document.getElementsByTagName('head')[0].appendChild(sheet); });
 };
 
 var lazyloadStylesheets = () => {
   app.debug('main >>> lazyloadStylesheets');
-  loadCss("http://js.arcgis.com/3.13/esri/css/esri.css");
-  loadCss("css/app.css");
+  loadCss(arcgisConfig.css);
+  loadCss('css/app.css');
 };
 
-var applyConfigurations = () => {
-  app.debug('main >>> applyConfigurations');
+var configureApp = () => {
+  app.debug('main >>> configureApp');
+  // Setup defaults such as esri proxy url or cors enabled servers
 };
 
 var initializeApp = () => {
   app.debug('main >>> initializeApp');
-  React.render(<Map />, document.getElementById('map-container'));
+  React.render(<App />, document.body);
 };
 
-// Start the App
 lazyloadStylesheets();
-applyConfigurations();
+configureApp();
 initializeApp();

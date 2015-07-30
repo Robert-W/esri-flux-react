@@ -1,0 +1,37 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "ecmaFeatures": {
+    "templateStrings": true,
+    "modules": true,
+    "jsx": true
+  },
+  "globals": {
+    "app": true,
+    "alert": true,
+    "define": true,
+    "window": true,
+    "console": true,
+    "require": true,
+    "document": true,
+    "location": true,
+    "requestAnimationFrame": true,
+    "it": true,
+    "jest": true,
+    "spyOn": true,
+    "expect": true,
+    "describe": true,
+    "afterEach": true,
+    "beforeEach": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "quotes": [1, "single", "avoid-escape"],
+    "no-eval": 0
+  }
+}

@@ -1,6 +1,7 @@
-import {MapActions as actions} from 'actions/MapActions';
-import {BasemapGallery} from 'map/BasemapGallery';
-import {map as config} from 'js/config';
+import {MapActions as actions} from 'js/actions/MapActions';
+import {BasemapGallery} from 'js/map/BasemapGallery';
+import {Loader} from 'js/map/Loader';
+import {mapConfig} from 'js/config';
 import React from 'react';
 
 export class Map extends React.Component {
@@ -11,19 +12,20 @@ export class Map extends React.Component {
   }
 
   componentDidMount () {
-    actions.createMap().then(() => {
+    actions.createMap(mapConfig).then(() => {
       this.setState({ loaded: true });
     });
   }
 
   render () {
-      return (
-        <div id={config.id}>
-          <div className='map-widgets-wrapper'>
-            {!this.state.loaded ? null : <BasemapGallery /> }
-          </div>
-        </div>
-      );
+    var widgets = [<BasemapGallery />];
+
+    return (
+      <div className='map' id={mapConfig.id} >
+        <Loader text='loading...' visible={!this.state.loaded} />
+        {!this.state.loaded ? null : widgets }
+      </div>
+    );
   }
 
 }
