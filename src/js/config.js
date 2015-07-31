@@ -1,7 +1,7 @@
 export const config = {
   app: {
     'title': 'Simple Map',
-    'subtitle': 'Boilerplate for using Flux and React with Esri\'s JavaScript API.'
+    'subtitle': 'just a simple boilerplate for using React with Esri\'s JavaScript API.'
   },
 
   arcgis: {
