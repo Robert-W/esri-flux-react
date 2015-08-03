@@ -42,14 +42,14 @@ describe('Utilities - interpreter', () => {
 
   xit('should allow for computed properties', () => {
     /*
-      In the form, the user should be able to specify things like (high + low) / total,
+      In the form, the user should be able to specify things like (high + low) / count,
       where high, low, and total are numeric fields
     */
   });
 
   it('should take template strings and return a full value', () => {
     /*
-      Useful for info templates, so a user can supply things like 'My Name is ${first_name} ${last_name}',
+      A user can supply things like 'My Name is ${first_name} ${last_name}',
       the response would be My Name is Kid rock, useful for identify and query tasks for info windows
     */
   });
