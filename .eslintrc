@@ -20,6 +20,7 @@
     "location": true,
     "requestAnimationFrame": true,
     "it": true,
+    "xit": true,
     "jest": true,
     "spyOn": true,
     "expect": true,
