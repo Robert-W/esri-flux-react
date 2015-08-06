@@ -1,5 +1,6 @@
 import {MAP as constants} from 'js/constants/AppConstants';
 import {Dispatcher as dispatcher} from 'js/dispatcher';
+import {getUrlParams} from 'js/utils/params';
 import EsriMap from 'esri/map';
 
 export const MapActions = {
@@ -10,7 +11,8 @@ export const MapActions = {
   */
   createMap (mapConfig) {
     app.debug('MapActions >>> createMap');
-
+    let basemap = getUrlParams(location.href)[constants.basemap];
+    if (basemap) { mapConfig.options.basemap = basemap; }
     var deferred = new Promise((resolve) => {
       app.map = new EsriMap(mapConfig.id, mapConfig.options);
       app.map.on('load', () => {
@@ -27,7 +29,7 @@ export const MapActions = {
   */
   setBasemap (basemap) {
     app.debug('MapActions >>> setBasemap');
-
+    app.map.setBasemap(basemap);
     dispatcher.dispatch({
       actionType: constants.basemap,
       data: basemap

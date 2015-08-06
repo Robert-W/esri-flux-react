@@ -1,13 +1,10 @@
 import {MapActions as actions} from 'js/actions/MapActions';
 import {MAP as constants} from 'js/constants/AppConstants';
 import BasemapGalleryItem from 'js/map/BasemapGalleryItem';
-import {getUrlParams} from 'js/utils/params';
 import MapStore from 'js/stores/MapStore';
-import {basemaps} from 'js/config';
 import React from 'react';
 
 let getCurrentBasemap = () => MapStore.get(constants.basemap) || app.map.getBasemap();
-let getBasemapFromUrl = () => getUrlParams(location.href);
 
 export class BasemapGallery extends React.Component {
 
@@ -21,18 +18,10 @@ export class BasemapGallery extends React.Component {
 
   componentDidMount () {
     MapStore.registerCallback(this.storeDidUpdate.bind(this));
-
-    let basemap = getBasemapFromUrl()[constants.basemap];
-    if (basemap) { actions.setBasemap(basemap); }
   }
 
   storeDidUpdate () {
-    let basemap = getCurrentBasemap();
-    app.map.setBasemap(basemap);
-
-    this.setState({
-      activeBasemap: basemap
-    });
+    this.setState({ activeBasemap: getCurrentBasemap() });
   }
 
   render () {
@@ -40,13 +29,14 @@ export class BasemapGallery extends React.Component {
       <div className={'map-buttons basemap-gallery' + (this.state.open ? ' open' : '')} >
         <div className='basemap-gallery-icon pointer' onClick={this.toggleGallery.bind(this)}>BG</div>
         <ul className='basemap-gallery-list'>
-          {this.renderBasemapItems()}
+          {this.renderBasemapItems(this.props.basemaps)}
         </ul>
       </div>
     );
   }
 
-  renderBasemapItems () {
+  renderBasemapItems (basemaps) {
+    if (!basemaps) { return null; }
     return basemaps.map(basemap => {
       return (
         <BasemapGalleryItem
