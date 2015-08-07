@@ -22,7 +22,7 @@ describe('Utilities - assert', () => {
 
   it('should throw an error with an anonymous message when none is provided and condition is falsy', () => {
     expect(() => {
-      assert(true === false, anonymousMessage);
+      assert(true === false);
     }).toThrow(anonymousMessage);
   });
 
