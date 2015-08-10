@@ -13,15 +13,6 @@ let getDefaultValue = () => { return { val: { height: 30, width: 30, opacity: 0 
 /* BasemapGallery helper function */
 let getCurrentBasemap = () => MapStore.get(constants.basemap) || app.map.getBasemap();
 
-/* Old render content that does not use Spring animation
-<div className={'map-buttons basemap-gallery' + (this.state.open ? ' open' : '')} >
-  <div className='basemap-gallery-icon pointer' onClick={this.toggleGallery.bind(this)}>BG</div>
-  <ul className='basemap-gallery-list'>
-    {this.renderBasemapItems(this.props.basemaps)}
-  </ul>
-</div>
-*/
-
 export class BasemapGallery extends React.Component {
 
   constructor (props) {

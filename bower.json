@@ -2,6 +2,7 @@
   "name": "esri-flux-react",
   "dependencies": {
     "react": "~0.13.3",
-    "babel-polyfill": "~0.0.1"
+    "babel-polyfill": "~0.0.1",
+    "react-motion": "~0.2.6"
   }
 }
