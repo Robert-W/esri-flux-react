@@ -8,14 +8,8 @@
   z-index 5
 
 .basemap-gallery
-  transition all .25s ease
   right 10px
   top 80px
-  &.open
-    height 250px
-    width 210px
-  &.open .basemap-gallery-list
-    display block
 
 .basemap-gallery-icon
   border-radius(5px)
@@ -26,10 +20,8 @@
   top 0
 
 .basemap-gallery-list
-  border-top 1px solid $mainBorder
   position absolute
   overflow-y auto
-  display none
   padding 0
   margin 0
   top 30px
@@ -45,6 +37,8 @@
   &.active
   &:hover
     background $activeBackground
+  &:first-child
+    border-top 1px solid $mainBorder
   &:last-child
     border-radius-bottom(5px)
     border-bottom none
