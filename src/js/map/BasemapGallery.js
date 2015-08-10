@@ -6,7 +6,7 @@ import {Spring} from 'react-motion';
 import React from 'react';
 
 /* Spring helper functions */
-let springConfig = [300, 50];
+let springConfig = [300, 50]; // [stiffness, damping]
 let getEndValue = isOpen => { return { val: { height: isOpen ? 250 : 30, width: isOpen ? 210 : 30, opacity: isOpen ? 1.0 : 0 }, config: springConfig }; };
 let getStyle = delta => { return { height: `${delta.val.height}px`, width: `${delta.val.width}px`}; };
 let getDefaultValue = () => { return { val: { height: 30, width: 30, opacity: 0 } }; };
