@@ -1,10 +1,11 @@
 {
-  "name": "esri-react-prerender",
+  "name": "esri-flux-react",
   "version": "0.0.1",
   "description": "Boilerplate for a project that pre-renders it's React components and also uses Esri's JavaScript 4.0 Beta and ES6.",
   "scripts": {
     "start": "gulp build && npm run jade-dev & npm run babel-dev & npm run stylus-dev",
     "dist": "rm -rf dist && gulp dist && npm run optimize && npm run stylus && npm run jade",
+    "distWin": "rm -rf dist && gulp dist && npm run optimizeWin && npm run stylus && npm run jade",
     "jade-dev": "jade src/index.jade -O src/index.json -P -o build --watch",
     "babel-dev": "babel src --out-dir build --modules amd -w",
     "stylus-dev": "mkdir -p build/css && stylus src/css/base.styl -l --watch & stylus src/css/app.styl -o build/css -l --watch",
@@ -13,6 +14,7 @@
     "babel": "babel src --modules amd --out-dir build",
     "stylus": "mkdir -p dist/css && stylus src/css/base.styl --compress && stylus src/css/app.styl -o dist/css --compress",
     "optimize": "npm run babel && r.js -o build.js",
+    "optimizeWin": "npm run babel && r.js.cmd -o build.js",
     "test": "jest --verbose"
   },
   "author": "https://github.com/Robert-W",
@@ -50,7 +52,7 @@
   "devDependencies": {
     "babel": "^5.6.23",
     "babel-jest": "^5.3.0",
-    "eslint": "^0.24.1",
+    "eslint": "^1.1.0",
     "eslint-plugin-react": "^3.0.0",
     "gulp": "^3.9.0",
     "gulp-imagemin": "^2.3.0",
