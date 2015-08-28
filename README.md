@@ -2,7 +2,9 @@
 Simple demo application using Esri's JavaScript API and React. It also shows how to use the Flux architecture in a map based application.  This is using a naive implementation of flux I wrote myself based off of [React's TODO MVC example](https://facebook.github.io/flux/docs/todo-list.html), it's good at demonstrating the concepts of Flux but is by no means intended to be a Flux library.  It would work perfectly fine in production on a simple app but once your app gets larger and has multiple stores, especially stores that depend on each other, you may want to use something like [Alt](http://alt.js.org/) which has ```waitsFor``` in the dispatcher as well as other extras and is much more battle tested.
 
 ## Demo
-<a href='http://robert-w.github.io/esri-flux-react/'>http://robert-w.github.io/esri-flux-react/</a>
+> The Demo is currently using the react-motion branch.
+
+[http://robert-w.github.io/esri-flux-react/](http://robert-w.github.io/esri-flux-react/)
 
 ### Getting Started
 This project requires node.js and bower.
