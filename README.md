@@ -25,7 +25,7 @@ Run: ```npm run dist```
 Generates a minified build using a custom prerender script, requirejs optimizer, babel, stylus, jade, and gulp in a dist folder.  After running, you can look at the index.html source and you will notice a big string of React markup generated from prerender.js.
 
 ##### Notes
-Check out the react-motion branch.  Instead of using css animations on the basemap gallery it is using [react-motion](https://github.com/chenglou/react-motion) by @chenglou, I like this version much better and it will soon be merged in to master :)
+Check out the react-motion branch.  Instead of using css animations on the basemap gallery it is using [react-motion](https://github.com/chenglou/react-motion) by [@chenglou](https://github.com/chenglou), I like this version much better and it will soon be merged in to master :)
 
 ##### Known Issues
 Build commands may trip up on windows, there is an ```npm run  distWin``` which can be used for a custom build on windows.
