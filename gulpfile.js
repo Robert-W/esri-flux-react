@@ -23,7 +23,7 @@ gulp.task('copy', function () {
     .pipe(gulp.dest(config.copy.out));
 });
 
-gulp.task('babel:polyfill', function () {
+gulp.task('babel-polyfill', function () {
   return gulp.src(config.babel.src)
     .pipe(umd({
       exports: function () {return '_babelPolyfill'; },
@@ -50,5 +50,5 @@ gulp.task('imagemin-dist', function () {
     .pipe(gulp.dest(config.imagemin.dist));
 });
 
-gulp.task('build', ['copy', 'imagemin-build']);
-gulp.task('dist', ['copy', 'imagemin-dist']);
+gulp.task('build', ['copy', 'babel-polyfill', 'imagemin-build']);
+gulp.task('dist', ['copy', 'babel-polyfill', 'imagemin-dist']);
