@@ -17,26 +17,34 @@
 .relative
 	position relative
 
+html
+body
+.react-root
+	overflow hidden
+	height 100%
+	width 100%
+	padding 0
+	margin 0
+
 body
 	background $bodyBackground
 	font-family $fontFamily
 
+.react-root
+	flex-direction column
+	display flex
+
 .app-header
 	background $headerBackground
+	flex 0 0 $headerHeight
 	color $headerFontColor
 	height $headerHeight
-	position absolute
 	z-index 1
-	right 0
-	left 0
-	top 0
 
 .app-body
-	position absolute
-	top $headerHeight
-	bottom 0
-	right 0
-	left 0
+	flex-direction row
+	display flex
+	flex-grow 2
 
 @require 'loader'
 @require 'header'
