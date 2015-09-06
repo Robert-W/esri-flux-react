@@ -1,7 +1,5 @@
-var modulePath = '../../src/js/utils/assert';
-
-jest.dontMock(modulePath);
-const assert = require(modulePath);
+const assert = require('../src/js/utils/assert');
+let expect = require('chai').expect;
 
 describe('Utilities - assert', () => {
 
@@ -11,25 +9,25 @@ describe('Utilities - assert', () => {
   it('should not throw an error when provided with a truthy condition', () => {
     expect(() => {
       assert(1, '1 is truthy right');
-    }).not.toThrow();
+    }).to.not.throw();
   });
 
   it('should throw an error when provided with a falsy condition', () => {
     expect(() => {
       assert(1 === 2, '1 === 2');
-    }).toThrow();
+    }).to.throw();
   });
 
   it('should throw an error with an anonymous message when none is provided and condition is falsy', () => {
     expect(() => {
       assert(true === false);
-    }).toThrow(anonymousMessage);
+    }).to.throw(anonymousMessage);
   });
 
   it('should throw an error with the provided message when provided and condition is falsy', () => {
     expect(() => {
       assert('Test' === 'test', expectedMessage);
-    }).toThrow(expectedMessage);
+    }).to.throw(expectedMessage);
   });
 
 });

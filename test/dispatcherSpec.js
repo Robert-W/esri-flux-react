@@ -1,7 +1,6 @@
-var modulePath = '../src/js/dispatcher';
-
-jest.dontMock(modulePath);
-const dispatcher = require(modulePath).Dispatcher;
+const dispatcher = require('../src/js/dispatcher').Dispatcher;
+let expect = require('chai').expect;
+let sinon = require('sinon');
 
 describe('Dispatcher', () => {
 
@@ -15,8 +14,8 @@ describe('Dispatcher', () => {
   };
 
   beforeEach(function () {
-    test.A = jest.genMockFunction();
-    test.B = jest.genMockFunction();
+    test.A = sinon.spy();
+    test.B = sinon.spy();
   });
 
   afterEach(function () {
@@ -26,28 +25,24 @@ describe('Dispatcher', () => {
 
   it('should return an id when registering a callback', () => {
     let token = dispatcher.register(test.A);
-    expect(token).toEqual('_1');
+    expect(token).to.equal('_1');
   });
 
   it('should trigger the callback with the right payload', () => {
-    spyOn(test, 'A');
     dispatcher.register(test.A);
     dispatcher.dispatch(test.payload);
-    expect(test.A).toHaveBeenCalledWith(test.payload);
+    expect(test.A.calledWith(test.payload)).to.be.true;
   });
 
   it('should notify it\'s subscribers', () => {
-    spyOn(test, 'A');
-    spyOn(test, 'B');
-
     dispatcher.register(test.A);
     dispatcher.dispatch(test.payload);
-    expect(test.A).toHaveBeenCalled();
+    expect(test.A.called).to.be.true;
 
     dispatcher.register(test.B);
     dispatcher.dispatch(test.payload);
-    expect(test.A.calls.length).toEqual(2);
-    expect(test.B.calls.length).toEqual(1);
+    expect(test.A.callCount).to.equal(2);
+    expect(test.B.callCount).to.equal(1);
   });
 
 });

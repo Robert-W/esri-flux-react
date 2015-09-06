@@ -11,7 +11,7 @@ export function toObject(querystring) {
   // Should have an array of arrays now, ex: [['a','b'], ['foo','bar']]
   pairs.forEach((pair) => {
     if (!pair[0] || !pair[1]) {
-      console.warn(`You provided an invalid key-value pair, ${pair[0]}-${pair[1]} is being omitted.`);
+      console.warn(`You provided an invalid key-value pair, ${pair[0]} is being omitted.`);
       return;
     }
     result[pair[0]] = pair[1];
