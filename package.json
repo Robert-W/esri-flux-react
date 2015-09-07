@@ -36,6 +36,7 @@
   ],
   "dependencies": {
     "babel": "^5.8.23",
+    "browser-sync": "^2.9.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.1",
     "gulp-imagemin": "^2.3.0",
