@@ -1,6 +1,6 @@
 {
   "name": "esri-flux-react",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Boilerplate for a project that pre-renders it's React components and also uses Esri's JavaScript 4.0 Beta and ES6.",
   "scripts": {
     "start": "gulp build;npm run babel -- -w & gulp watch & npm run jade:watch",
