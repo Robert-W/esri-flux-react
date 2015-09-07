@@ -1,4 +1,5 @@
 var autoprefixer = require('gulp-autoprefixer');
+var browserSync = require('browser-sync');
 var imagemin = require('gulp-imagemin');
 var stylus = require('gulp-stylus');
 var umd = require('gulp-umd');
@@ -27,6 +28,11 @@ var config = {
     mainBuild: 'build/css',
     watch: 'src/css/*.styl',
     dist: 'dist/css'
+  },
+  server: {
+    files: ['build/**/*.html', 'build/**/*.js', 'build/**/*.css'],
+    port: process.env.PORT || 3000,
+    url: 'build'
   }
 };
 
@@ -65,14 +71,14 @@ gulp.task('imagemin-dist', function () {
 gulp.task('stylus-base', function () {
   return gulp.src(config.stylus.baseSrc)
     .pipe(stylus({linenos: true}))
-    // .pipe(autoprefixer())
+    .pipe(autoprefixer())
     .pipe(gulp.dest(config.stylus.baseBuild));
 });
 
 gulp.task('stylus-main', function () {
   return gulp.src(config.stylus.mainSrc)
     .pipe(stylus({linenos: true}))
-    // .pipe(autoprefixer())
+    .pipe(autoprefixer())
     .pipe(gulp.dest(config.stylus.mainBuild));
 });
 
@@ -87,5 +93,19 @@ gulp.task('watch', function () {
   gulp.watch(config.stylus.watch, ['stylus-base', 'stylus-main']);
 });
 
+gulp.task('browser-sync', function () {
+  browserSync({
+    files: config.server.files,
+    server: config.server.url,
+    port: config.server.port,
+    reloadOnRestart: false,
+    logFileChanges: false,
+    ghostMode: false,
+    open: false,
+    ui: false
+  });
+});
+
+gulp.task('serve', ['browser-sync']);
 gulp.task('build', ['stylus-base', 'stylus-main', 'copy', 'babel-polyfill', 'imagemin-build']);
 gulp.task('dist', ['copy', 'babel-polyfill', 'imagemin-dist', 'stylus-dist']);

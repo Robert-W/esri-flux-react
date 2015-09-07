@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "description": "Boilerplate for a project that pre-renders it's React components and also uses Esri's JavaScript 4.0 Beta and ES6.",
   "scripts": {
-    "start": "gulp build;npm run babel -- -w & gulp watch & npm run jade:watch",
-    "test": "mocha --compilers js:babel/register;eslint src/js/*",
-    "dist": "rm -rf dist;gulp dist;npm run optimize;npm run jade:dist;",
+    "start": "gulp build; npm run babel -- -w & npm run jade:watch & gulp watch & gulp serve",
+    "test": "mocha --compilers js:babel/register; eslint src/js/*",
+    "dist": "rm -rf dist; gulp dist; npm run optimize; npm run jade:dist;",
     "babel": "babel src --modules amd --out-dir build",
     "prerender": "NODE_PATH=./src node ./prerender",
     "jade:watch": "jade src/index.jade -O src/index.json -P -o build --watch",
-    "jade:dist": "npm run prerender && jade src/index.jade -O src/jade.json -o dist && rm src/jade.json",
-    "optimize": "npm run babel && r.js -o build.js",
-    "distWin": "rm -rf dist && gulp dist && npm run optimizeWin && npm run jade:dist",
-    "optimizeWin": "npm run babel && r.js.cmd -o build.js"
+    "jade:dist": "npm run prerender; jade src/index.jade -O src/jade.json -o dist; rm src/jade.json",
+    "optimize": "npm run babel; r.js -o build.js",
+    "distWin": "rm -rf dist; gulp dist; npm run optimizeWin; npm run jade:dist;",
+    "optimizeWin": "npm run babel; r.js.cmd -o build.js"
   },
   "author": "https://github.com/Robert-W",
   "license": "MIT",
