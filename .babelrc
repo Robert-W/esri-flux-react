@@ -2,8 +2,9 @@
   "stage": 0,
   "sourceMaps": false,
   "ignore": [
-    "vendor",
-    "bower",
+    "dist",
+    "build",
+    "src/vendor",
     "node_modules",
     "src/prerender.js"
   ]

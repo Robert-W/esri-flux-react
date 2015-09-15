@@ -10,7 +10,7 @@ window.app = {
   debugEnabled: true,
   debug: function (message) {
     if (this.debugEnabled) {
-      var print = typeof message === 'string' ? console.log : console.dir;
+      let print = typeof message === 'string' ? console.log : console.dir;
       print.apply(console, [message]);
     }
   }
