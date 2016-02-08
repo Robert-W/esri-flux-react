@@ -1,54 +1,54 @@
-/* Import Config and Commonly Used Functions */
-@require 'config'
-/* Common Classes */
-.hidden
-.hideOnLoad
-	display none
-
-.clearfix
-	clear both
-
-.text-center
-	text-align center
-
-.pointer
-	cursor pointer
-
-.relative
-	position relative
-
 html
 body
-.react-root
-	overflow hidden
-	height 100%
-	width 100%
-	padding 0
-	margin 0
+#root
+.root
+  height 100%
+  width 100%
+  padding 0
+  margin 0
 
-body
-	background $bodyBackground
-	font-family $fontFamily
+*
+*:before
+*:after
+  -webkit-tap-highlight-color rgba(0, 0, 0, 0)
+  -webkit-font-smoothing antialiased
+  box-sizing border-box
 
-.react-root
-	flex-direction column
-	display flex
+.hidden
+  display none !important
 
-.app-header
-	background $headerBackground
-	flex 0 0 $headerHeight
-	color $headerFontColor
-	height $headerHeight
-	z-index 1
+.custom-scroll::-webkit-scrollbar
+  height 8px
+  width 8px
 
-.app-body
-	flex-direction row
-	display flex
-	flex-grow 2
+.custom-scroll::-webkit-scrollbar-thumb
+  background #888
+  border-radius 0
 
-@require 'loader'
+.shadow
+  box-shadow 2px 2px 2px rgba(0,0,0,0.25)
+
+.pointer
+  cursor pointer
+
+.map-component
+  position absolute
+  z-index 5
+
+ul
+ol
+  list-style-type none
+  padding 0
+  margin 0
+
+//- Include Layout CSS needed to be present on load
 @require 'header'
-@require 'map'
-@require 'mapTools'
-/* Import this last so we dont need important tags in it to override styles */
-@require 'media'
+@require 'mapControls'
+@require 'loader'
+
+.map
+  position absolute
+  top $headerBottom
+  bottom 0
+  right 0
+  left 0

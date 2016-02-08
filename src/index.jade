@@ -1,30 +1,44 @@
-doctype html
+doctype
 html
   head
     title #{title}
-    meta(name='author', content='#{author}')
-    meta(name='viewport', id='viewport', content='width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1')
-    meta(http-equiv='X-UA-Compatible', content='IE=Edge')
-    meta(charset='utf-8')
+    include jade/meta
+    //- Include this to include a Content-Security-Policy
+    //- include jade/CSP
+
     style
-      include css/base.css
+      :stylus
+        @require 'css/critical'
+
+    link(rel='stylesheet', href='css/app.css?#{version}')
+    link(rel='stylesheet', href='//js.arcgis.com/#{esriVersion}/esri/css/esri.css')
+  body
+    include jade/svg
+    #root
     script.
-      var base = location.pathname.replace(/\/[^/]+$/, '');
+      var base = location.href.replace(/\/[^/]+$/, '');
       var dojoConfig = {
         parseOnLoad: false,
         async: true,
-        cacheBust: '#{appVersion}',
+        cacheBust: '#{version}',
         packages: [
-          { name: 'js', location: base + 'js' },
-          { name: 'vendor', location: base + 'vendor' }
+          { name: 'js', location: base + '/js' },
+          { name: 'vendor', location: base + '/vendor' },
+          { name: 'utils', location: base + '/js/utils' },
+          { name: 'stores', location: base + '/js/stores' },
+          { name: 'actions', location: base + '/js/actions' },
+          { name: 'constants', location: base + '/js/constants' },
+          { name: 'components', location: base + '/js/components' }
         ],
         aliases: [
+          ['alt', 'vendor/alt/dist/alt.min'],
           ['react', 'vendor/react/react.min'],
+          ['react-dom', 'vendor/react/react-dom.min'],
           ['babel-polyfill', 'vendor/babel-polyfill/browser-polyfill']
         ],
         deps: ['dojo/domReady!'],
         callback: function () {require(['js/main']);}
       };
-    script(src='http://js.arcgis.com/#{esriVersion}/init.js', async)
-  body
-    != markup
+    script(src='//js.arcgis.com/#{esriVersion}/init.js', async)
+
+    

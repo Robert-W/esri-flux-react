@@ -1,15 +1,12 @@
-# Ignore the build and dist directories
+# Ignore any generated content
 build
 dist
+_test
+_old
+_src
 
-# Ignore components installed by bower
-vendor
-
-# Ignore these, just do it
+# Ignore logs, system files, and dependencies
 node_modules
-npm-debug.log
 .DS_Store
-
-# Ignore any generated content to prevent conflicts when multiple people develop
-*.html
-*.css
+*.log
+*.swp

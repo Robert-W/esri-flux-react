@@ -1,111 +1,137 @@
+var minifyInline = require('gulp-minify-inline');
 var autoprefixer = require('gulp-autoprefixer');
+var Prerender = require('react-prerender');
+var gulpPlumber = require('gulp-plumber');
 var browserSync = require('browser-sync');
 var imagemin = require('gulp-imagemin');
 var stylus = require('gulp-stylus');
-var umd = require('gulp-umd');
+var locals = require('./src/locals');
+var jade = require('gulp-jade');
 var gulp = require('gulp');
+var path = require('path');
 
+//- Read the version from the package json
+var version = require('./package.json').version;
+locals.version = version;
+
+//- Set up error handling using plumber
+var plumber = function () {
+  return gulpPlumber({
+    errorHandler: function (error) { console.log(error); this.emit('end'); }
+  });
+};
 
 var config = {
-  copy: {
-    base: 'src',
-    src: ['src/vendor/**/*.js'],
-    out: 'build'
-  },
-  babel: {
-    src: 'src/vendor/babel-polyfill/browser-polyfill.js',
-    build: 'build/vendor/babel-polyfill/'
-  },
   imagemin: {
-    src: 'src/css/images/*',
-    build: 'build/css/images',
-    dist: 'dist/css/images'
+    src: 'src/**/*.{png,jpg,gif,svg,ico}',
+    build: 'build',
+    dist: 'dist'
+  },
+  jade: {
+    watch: ['src/**/*.jade', 'src/css/**/*.styl'],
+    src: ['src/index.jade'],
+    build: 'build',
+    dist: 'dist'
   },
   stylus: {
-    baseSrc: 'src/css/base.styl',
-    mainSrc: 'src/css/app.styl',
-    baseBuild: 'src/css',
-    mainBuild: 'build/css',
-    watch: 'src/css/*.styl',
+    watch: 'src/css/**/*.styl',
+    src: ['src/css/app.styl'],
+    build: 'build/css',
     dist: 'dist/css'
   },
   server: {
     files: ['build/**/*.html', 'build/**/*.js', 'build/**/*.css'],
     port: process.env.PORT || 3000,
-    url: 'build'
+    baseDir: 'build'
   }
 };
 
-gulp.task('copy', function () {
-  return gulp.src(config.copy.src, { base: config.copy.base })
-    .pipe(gulp.dest(config.copy.out));
+gulp.task('stylus-build', function () {
+  return gulp.src(config.stylus.src)
+    .pipe(plumber())
+    .pipe(stylus({ linenos: true }))
+    .pipe(autoprefixer())
+    .pipe(gulp.dest(config.stylus.build));
 });
 
-gulp.task('babel-polyfill', function () {
-  return gulp.src(config.babel.src)
-    .pipe(umd({
-      exports: function () {return '_babelPolyfill'; },
-      namespace: function () {return 'window._babelPolyfill'; }
-    }))
-    .pipe(gulp.dest(config.babel.build));
+gulp.task('stylus-dist', function () {
+  return gulp.src(config.stylus.src)
+    .pipe(stylus({ compress: true }))
+    .pipe(autoprefixer())
+    .pipe(gulp.dest(config.stylus.dist));
+});
+
+gulp.task('stylus-watch', function () {
+  gulp.watch(config.stylus.watch, ['stylus-build']);
+});
+
+gulp.task('jade-build', function () {
+  return gulp.src(config.jade.src)
+    .pipe(plumber())
+    .pipe(jade({ pretty: true, locals: locals }))
+    .pipe(gulp.dest(config.jade.build));
+});
+
+gulp.task('jade-dist', function () {
+  return gulp.src(config.jade.src)
+    .pipe(jade({ locals: locals }))
+    .pipe(minifyInline())
+    .pipe(gulp.dest(config.jade.dist));
+});
+
+gulp.task('jade-watch', function () {
+  gulp.watch(config.jade.watch, ['jade-build']);
 });
 
 gulp.task('imagemin-build', function () {
   return gulp.src(config.imagemin.src)
-    .pipe(imagemin({
-      optimizationLevel: 5,
-      progressive: true
-    }))
+    .pipe(imagemin({ optimizationLevel: 1 }))
     .pipe(gulp.dest(config.imagemin.build));
 });
 
 gulp.task('imagemin-dist', function () {
   return gulp.src(config.imagemin.src)
-    .pipe(imagemin({
-      optimizationLevel: 7,
-      progressive: true
-    }))
+    .pipe(imagemin({ optimizationLevel: 7, progressive: true }))
     .pipe(gulp.dest(config.imagemin.dist));
 });
 
-gulp.task('stylus-base', function () {
-  return gulp.src(config.stylus.baseSrc)
-    .pipe(stylus({linenos: true}))
-    .pipe(autoprefixer())
-    .pipe(gulp.dest(config.stylus.baseBuild));
-});
-
-gulp.task('stylus-main', function () {
-  return gulp.src(config.stylus.mainSrc)
-    .pipe(stylus({linenos: true}))
-    .pipe(autoprefixer())
-    .pipe(gulp.dest(config.stylus.mainBuild));
-});
-
-gulp.task('stylus-dist', function () {
-  return gulp.src([config.stylus.baseSrc, config.stylus.mainSrc])
-    .pipe(stylus({compress: true}))
-    .pipe(autoprefixer())
-    .pipe(gulp.dest(config.stylus.dist));
-});
-
-gulp.task('watch', function () {
-  gulp.watch(config.stylus.watch, ['stylus-base', 'stylus-main']);
-});
-
 gulp.task('browser-sync', function () {
+  var useHttps = process.env.SERVER === 'https';
+
   browserSync({
+    server: config.server.baseDir,
     files: config.server.files,
-    server: config.server.url,
     port: config.server.port,
     reloadOnRestart: false,
     logFileChanges: false,
     ghostMode: false,
+    https: useHttps,
     open: false,
     ui: false
   });
 });
 
+gulp.task('prerender', function () {
+  var htmlFile = path.join(__dirname, 'dist/index.html'),
+      rootComponent = 'js/components/App',
+      mountQuery = '#root',
+      requirejs = {
+        buildProfile: path.join(__dirname, 'rjs.build.js'),
+        map: {
+          moduleRoot: path.join(__dirname, 'build/js'),
+          remapModule: 'js/config',
+          ignorePatterns: [/esri\//, /dojo\//, /dijit\//]
+        }
+      };
+
+  Prerender({
+    component: rootComponent,
+    mount: mountQuery,
+    target: htmlFile,
+    requirejs: requirejs
+  });
+});
+
 gulp.task('serve', ['browser-sync']);
-gulp.task('build', ['stylus-base', 'stylus-main', 'copy', 'babel-polyfill', 'imagemin-build']);
-gulp.task('dist', ['copy', 'babel-polyfill', 'imagemin-dist', 'stylus-dist']);
+gulp.task('start', ['stylus-build', 'jade-build', 'imagemin-build', 'stylus-watch', 'jade-watch']);
+gulp.task('production', ['stylus-dist', 'jade-dist', 'imagemin-dist']);

@@ -1,10 +1,16 @@
 {
-  "stage": 0,
+  "env": {
+    "production": {
+      "plugins": ["transform-es2015-modules-amd"]
+    },
+    "development": {
+      "plugins": ["transform-es2015-modules-amd"]
+    }
+  },
+  "presets": ["react", "es2015", "stage-0"],
   "sourceMaps": false,
   "ignore": [
-    "vendor",
-    "bower",
-    "node_modules",
-    "src/prerender.js"
+    "build",
+    "node_modules"
   ]
 }

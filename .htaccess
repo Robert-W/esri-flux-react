@@ -5,7 +5,7 @@ SetOutputFilter DEFLATE
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresDefault M1209600
-  ExpiresByType text/html M1209600
+  ExpiresByType text/html A60
   ExpiresByType image/gif A8035200
   ExpiresByType image/jpeg A8035200
   ExpiresByType image/png A8035200

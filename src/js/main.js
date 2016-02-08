@@ -1,19 +1,12 @@
-import babelPolyfill from 'babel-polyfill';
-import {arcgisConfig} from 'js/config';
-import {App} from 'js/layout/App';
+import App from 'components/App';
+import ReactDOM from 'react-dom';
 import React from 'react';
+import 'babel-polyfill';
 
-if (!babelPolyfill) { console.error('Error: babel-polyfill could not be detected.'); }
+if (!_babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 
-// Set up globals
-window.app = {
-  debugEnabled: true,
-  debug: function (message) {
-    if (this.debugEnabled) {
-      var print = typeof message === 'string' ? console.log : console.dir;
-      print.apply(console, [message]);
-    }
-  }
+window.brApp = {
+  debug: location.search.slice(1).search('debug') > -1
 };
 
 // Shim for rAF with timeout for callback
@@ -26,33 +19,13 @@ window.requestAnimationFrame = (function () {
     function (callback) { window.setTimeout(callback, 1000 / 60); };
 })();
 
-/**
-* @param {string} url - Url of resource to be loaded
-*/
-var loadCss = (url) => {
-  var sheet = document.createElement('link');
-  sheet.rel = 'stylesheet';
-  sheet.type = 'text/css';
-  sheet.href = url;
-  requestAnimationFrame(function () { document.getElementsByTagName('head')[0].appendChild(sheet); });
+let configureApp = () => {
+
 };
 
-var lazyloadStylesheets = () => {
-  app.debug('main >>> lazyloadStylesheets');
-  loadCss(arcgisConfig.css);
-  loadCss('css/app.css');
+let initializeApp = () => {
+  ReactDOM.render(<App />, document.getElementById('root'));
 };
 
-var configureApp = () => {
-  app.debug('main >>> configureApp');
-  // Setup defaults such as esri proxy url or cors enabled servers
-};
-
-var initializeApp = () => {
-  app.debug('main >>> initializeApp');
-  React.render(<App />, document.body);
-};
-
-lazyloadStylesheets();
-configureApp();
 initializeApp();
+configureApp();
