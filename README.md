@@ -6,6 +6,7 @@ Simple Boilerplate for using [React](https://facebook.github.io/react/) and [Esr
 
 ### Getting Started
 This project requires [Node.js](https://nodejs.org/en/)
+
 1. `npm install`
 2. `npm start`
 3. Open `http://localhost:3000`
