@@ -1,14 +1,14 @@
 # Ignore the build directory and src directory, run npm build to generate
-
 src
 build
 dist
 
 # Ignore these, just do it
-
 node_modules
 npm-debug.log
+_test
+_old
+_src
 
 # Ignore this to avoid strange conflicts
-
 .DS_Store
