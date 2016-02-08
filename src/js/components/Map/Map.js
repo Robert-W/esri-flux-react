@@ -34,7 +34,7 @@ export default class Map extends Component {
 
   render () {
     return (
-      <div ref='map'>
+      <div ref='map' className='map'>
         <Loader active={!this.map.loaded} />
         <MapControls />
       </div>
