@@ -1,6 +1,7 @@
 import appActions from 'actions/AppActions';
 import MapControls from './MapControls';
 import {mapConfig} from 'js/config';
+import VectorTileLayer from 'esri/layers/VectorTileLayer';
 import MapView from 'esri/views/MapView';
 import EsriMap from 'esri/Map';
 import Loader from './Loader';
@@ -27,7 +28,11 @@ export default class Map extends Component {
   }
 
   componentDidMount() {
+    const grayVector = new VectorTileLayer({
+      url: 'http://www.arcgis.com/sharing/rest/content/items/bdf1eec3fa79456c8c7c2bb62f86dade/resources/styles/root.json?f=pjson'
+    });
     const map = new EsriMap(mapConfig.mapOptions);
+    map.add(grayVector);
     const promise = new MapView({ container: this.refs.map, map: map, ...mapConfig.viewOptions });
     promise.then((mapView) => {
       this.mapView = mapView;
