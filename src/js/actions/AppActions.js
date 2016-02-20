@@ -2,7 +2,7 @@ import dispatcher from 'js/dispatcher';
 
 class AppActions {
 
-  updateMap () {
+  update () {
     return {};
   }
 

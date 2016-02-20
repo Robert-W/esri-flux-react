@@ -1,13 +1,10 @@
 export const mapConfig = {
-  options: {
-    navigationMode: 'css-transforms',
-    basemap: 'national-geographic',
-    force3DTransforms: true,
-    showAttribution: false,
-    center: [-41, 13],
-    fadeOnZoom: false,
-    slider: false,
-    logo: false,
+  mapOptions: {
+    basemap: 'gray'
+  },
+  viewOptions: {
+    ui: { components: ['logo', 'attribution'] },
+    center: [-35.55, 26.53],
     zoom: 3
   }
 };

@@ -11,7 +11,7 @@ html
         @require 'css/critical'
 
     link(rel='stylesheet', href='css/app.css?#{version}')
-    link(rel='stylesheet', href='//js.arcgis.com/#{esriVersion}/esri/css/esri.css')
+    link(rel='stylesheet', href='//js.arcgis.com/4.0beta3/esri/css/main.css')
   body
     include jade/svg
     #root
@@ -39,6 +39,6 @@ html
         deps: ['dojo/domReady!'],
         callback: function () {require(['js/main']);}
       };
-    script(src='//js.arcgis.com/#{esriVersion}/init.js', async)
+    script(src='//js.arcgis.com/4.0beta3/init.js', async)
 
     

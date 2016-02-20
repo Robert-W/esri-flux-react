@@ -6,12 +6,12 @@ class AppStore {
   constructor () {
 
     this.bindListeners({
-      updateMap: appActions.updateMap
+      update: appActions.update
     });
 
   }
 
-  updateMap () {}
+  update () {}
 
 }
 

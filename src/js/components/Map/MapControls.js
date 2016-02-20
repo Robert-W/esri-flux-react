@@ -8,20 +8,24 @@ const zoomOutSvg = '<use xlink:href="#icon-minus" />';
 const zoomInSvg = '<use xlink:href="#icon-plus" />';
 const shareSvg = '<use xlink:href="#icon-share" />';
 
+const animationOptions = {
+  duration: 300
+};
+
 export default class Test extends Component {
 
   static contextTypes = {
-    map: PropTypes.object
+    mapView: PropTypes.object
   };
 
   zoomIn = () => {
-    const {map} = this.context;
-    map.setZoom(map.getZoom() + 1);
+    const {mapView} = this.context;
+    mapView.animateTo({ zoom: mapView.zoom + 1 }, animationOptions);
   };
 
   zoomOut = () => {
-    const {map} = this.context;
-    map.setZoom(map.getZoom() - 1);
+    const {mapView} = this.context;
+    mapView.animateTo({ zoom: mapView.zoom - 1 }, animationOptions);
   };
 
   share = () => {
@@ -36,11 +40,11 @@ export default class Test extends Component {
     return (
       <div className='map__controls map-component shadow'>
         <ul className='map__controls__items'>
-          <li className='map__controls__item pointer' onClick={this.zoomIn}>
-            <svg className='map__controls__item-icon' dangerouslySetInnerHTML={{ __html: zoomInSvg }} />
-          </li>
           <li className='map__controls__item pointer' onClick={this.zoomOut}>
             <svg className='map__controls__item-icon' dangerouslySetInnerHTML={{ __html: zoomOutSvg }} />
+          </li>
+          <li className='map__controls__item pointer' onClick={this.zoomIn}>
+            <svg className='map__controls__item-icon' dangerouslySetInnerHTML={{ __html: zoomInSvg }} />
           </li>
           <li className='map__controls__item pointer' onClick={this.share}>
             <svg className='map__controls__item-icon' dangerouslySetInnerHTML={{ __html: shareSvg }} />
