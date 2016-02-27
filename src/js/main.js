@@ -1,3 +1,4 @@
+import {loadCSS} from 'utils/loaders';
 import App from 'components/App';
 import ReactDOM from 'react-dom';
 import React from 'react';
@@ -19,13 +20,17 @@ window.requestAnimationFrame = (function () {
     function (callback) { window.setTimeout(callback, 1000 / 60); };
 })();
 
-let configureApp = () => {
+const configureApp = () => {};
 
+const lazyloadAssets = () => {
+  loadCSS(`css/app.css?v=${window._versions.cache}`);
+  loadCSS(`//js.arcgis.com/${window._versions.esri}/esri/css/esri.css`);
 };
 
-let initializeApp = () => {
+const initializeApp = () => {
   ReactDOM.render(<App />, document.getElementById('root'));
 };
 
-initializeApp();
 configureApp();
+lazyloadAssets();
+initializeApp();

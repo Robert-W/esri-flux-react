@@ -10,12 +10,17 @@ html
       :stylus
         @require 'css/critical'
 
-    link(rel='stylesheet', href='css/app.css?#{version}')
-    link(rel='stylesheet', href='//js.arcgis.com/#{esriVersion}/esri/css/esri.css')
+    //- link(rel='stylesheet', href='css/app.css?#{version}')
+    //- link(rel='stylesheet', href='//js.arcgis.com/#{esriVersion}/esri/css/esri.css')
   body
     include jade/svg
     #root
     script.
+      //- Add versions for JS to read
+      var _versions = {
+        cache: '#{version}',
+        esri: '#{esriVersion}'
+      };
       var base = location.href.replace(/\/[^/]+$/, '');
       var dojoConfig = {
         parseOnLoad: false,
