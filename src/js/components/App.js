@@ -26,7 +26,7 @@ export default class App extends Component {
     return (
       <div className='root'>
         <Header title={text.title} />
-        <Map />
+        <Map {...this.state} />
       </div>
     );
   }

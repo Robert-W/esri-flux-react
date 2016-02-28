@@ -6,6 +6,10 @@ class AppActions {
     return {};
   }
 
+  toggleModal (data) {
+    return data;
+  }
+
 }
 
 export default dispatcher.createActions(AppActions);

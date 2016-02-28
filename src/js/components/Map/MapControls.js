@@ -1,3 +1,4 @@
+import appActions from 'actions/AppActions';
 import React, {
   Component,
   PropTypes
@@ -33,7 +34,7 @@ export default class Test extends Component {
   };
 
   locate = () => {
-    console.log('MapControls.locate');
+    appActions.toggleModal({ visible: true });
   };
 
   render () {

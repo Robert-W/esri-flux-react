@@ -5,10 +5,17 @@ class AppStore {
 
   constructor () {
 
+    this.modalVisible = false;
+
     this.bindListeners({
-      update: appActions.update
+      update: appActions.update,
+      toggleModal: appActions.toggleModal
     });
 
+  }
+
+  toggleModal (data) {
+    this.modalVisible = data.visible;
   }
 
   update () {}

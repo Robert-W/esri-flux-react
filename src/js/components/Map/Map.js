@@ -1,3 +1,4 @@
+import ModalWrapper from 'components/shared/ModalWrapper';
 import appActions from 'actions/AppActions';
 import MapControls from './MapControls';
 import {mapConfig} from 'js/config';
@@ -28,11 +29,15 @@ export default class Map extends Component {
   }
 
   componentDidMount() {
+
     const grayVector = new VectorTileLayer({
       url: 'http://www.arcgis.com/sharing/rest/content/items/bdf1eec3fa79456c8c7c2bb62f86dade/resources/styles/root.json?f=pjson'
     });
-    const map = new EsriMap(mapConfig.mapOptions);
-    map.add(grayVector);
+
+    const map = new EsriMap({
+      layers: [grayVector]
+    });
+
     const promise = new MapView({ container: this.refs.map, map: map, ...mapConfig.viewOptions });
     promise.then((mapView) => {
       this.mapView = mapView;
@@ -40,13 +45,24 @@ export default class Map extends Component {
       //- Expose the map for debugging purposes
       if (brApp.debug) { brApp.mapView = this.mapView; }
     });
+
   }
 
+  closeModal = () => {
+    appActions.toggleModal({ visible: false });
+  };
+
   render () {
+    const { modalVisible } = this.props;
+
     return (
       <div ref='map' className='map'>
         <Loader active={!this.mapView.ready} />
         <MapControls />
+
+        <ModalWrapper theme='error' active={modalVisible} close={this.closeModal}>
+          <div>Hello World Modal</div>
+        </ModalWrapper>
       </div>
     );
   }

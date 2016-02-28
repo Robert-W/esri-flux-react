@@ -14,6 +14,10 @@ body
   -webkit-font-smoothing antialiased
   box-sizing border-box
 
+.root
+  flex-flow column
+  display flex
+
 .hidden
   display none !important
 
@@ -45,10 +49,3 @@ ol
 @require 'header'
 @require 'mapControls'
 @require 'loader'
-
-.map
-  position absolute
-  top $headerBottom
-  bottom 0
-  right 0
-  left 0
