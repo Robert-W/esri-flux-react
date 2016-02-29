@@ -48,20 +48,27 @@ export default class Map extends Component {
 
   }
 
-  closeModal = () => {
-    appActions.toggleModal({ visible: false });
+  closeShareModal = () => {
+    appActions.toggleShareModal({ visible: false });
+  };
+
+  closeLocateModal = () => {
+    appActions.toggleLocateModal({ visible: false });
   };
 
   render () {
-    const { modalVisible } = this.props;
+    const { shareModalActive, locateModalActive } = this.props;
 
     return (
       <div ref='map' className='map'>
         <Loader active={!this.mapView.ready} />
         <MapControls />
 
-        <ModalWrapper theme='error' active={modalVisible} close={this.closeModal}>
-          <div>Hello World Modal</div>
+        <ModalWrapper theme='error-modal' active={shareModalActive} close={this.closeShareModal}>
+          <h3>Share Something</h3>
+        </ModalWrapper>
+        <ModalWrapper theme='basic-modal' active={locateModalActive} close={this.closeLocateModal}>
+          <h3>Locate Something</h3>
         </ModalWrapper>
       </div>
     );

@@ -2,13 +2,9 @@ import dispatcher from 'js/dispatcher';
 
 class AppActions {
 
-  update () {
-    return {};
-  }
-
-  toggleModal (data) {
-    return data;
-  }
+  update = () => { return {}; };
+  toggleShareModal = (data) => data;
+  toggleLocateModal = (data) => data;
 
 }
 

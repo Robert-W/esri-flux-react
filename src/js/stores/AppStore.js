@@ -5,17 +5,23 @@ class AppStore {
 
   constructor () {
 
-    this.modalVisible = false;
+    this.shareModalActive = false;
+    this.locateModalActive = false;
 
     this.bindListeners({
       update: appActions.update,
-      toggleModal: appActions.toggleModal
+      toggleShareModal: appActions.toggleShareModal,
+      toggleLocateModal: appActions.toggleLocateModal
     });
 
   }
 
-  toggleModal (data) {
-    this.modalVisible = data.visible;
+  toggleShareModal (data) {
+    this.shareModalActive = data.visible;
+  }
+
+  toggleLocateModal (data) {
+    this.locateModalActive = data.visible;
   }
 
   update () {}

@@ -30,11 +30,11 @@ export default class Test extends Component {
   };
 
   share = () => {
-    console.log('MapControls.share');
+    appActions.toggleShareModal({ visible: true });
   };
 
   locate = () => {
-    appActions.toggleModal({ visible: true });
+    appActions.toggleLocateModal({ visible: true });
   };
 
   render () {
