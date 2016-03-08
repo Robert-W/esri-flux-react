@@ -35,8 +35,8 @@ const stylesheet = {
   closeSvg: {
     fill: '#555555',
     margin: 'auto',
-    height: '75%',
-    width: '75%'
+    height: '26px',
+    width: '26px'
   },
   content: {
     maxHeight: '450px',
@@ -63,19 +63,15 @@ export default function ControlledModalWrapper (props) {
       <div style={stylesheet.modalBackground} onClick={props.close} />
       <article {...modalAttrs}>
         <div title='close' style={stylesheet.close} onClick={props.close}>
-          <svg style={stylesheet.closeSvg} dangerouslySetInnerHTML={{ __html: '<use xlink:href="#shape-close" />'}} />
+          <svg style={stylesheet.closeSvg} viewbox='0 0 25 25'>
+            <title>Close</title>
+            <path d="M 5 19 L 19 5 L 21 7 L 7 21 L 5 19 ZM 7 5 L 21 19 L 19 21 L 5 7 L 7 5 Z"></path>
+          </svg>
         </div>
           <div style={stylesheet.content}>
             {props.children}
           </div>
       </article>
-
-      <svg class="hidden">
-        <symbol id="shape-close" viewbox="0 0 25 25">
-          <title>Close</title>
-          <path d="M 5 19 L 19 5 L 21 7 L 7 21 L 5 19 ZM 7 5 L 21 19 L 19 21 L 5 7 L 7 5 Z"></path>
-        </symbol>
-      </svg>
     </div>
   );
 }

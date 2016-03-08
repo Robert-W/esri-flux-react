@@ -16,17 +16,17 @@ const animationOptions = {
 export default class Test extends Component {
 
   static contextTypes = {
-    mapView: PropTypes.object
+    view: PropTypes.object
   };
 
   zoomIn = () => {
-    const {mapView} = this.context;
-    mapView.animateTo({ zoom: mapView.zoom + 1 }, animationOptions);
+    const {view} = this.context;
+    view.animateTo({ zoom: view.zoom + 1 }, animationOptions);
   };
 
   zoomOut = () => {
-    const {mapView} = this.context;
-    mapView.animateTo({ zoom: mapView.zoom - 1 }, animationOptions);
+    const {view} = this.context;
+    view.animateTo({ zoom: view.zoom - 1 }, animationOptions);
   };
 
   share = () => {

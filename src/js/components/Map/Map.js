@@ -3,6 +3,7 @@ import appActions from 'actions/AppActions';
 import MapControls from './MapControls';
 import {mapConfig} from 'js/config';
 import VectorTileLayer from 'esri/layers/VectorTileLayer';
+import SceneView from 'esri/views/SceneView';
 import MapView from 'esri/views/MapView';
 import EsriMap from 'esri/Map';
 import Loader from './Loader';
@@ -14,18 +15,18 @@ import React, {
 export default class Map extends Component {
 
   static childContextTypes = {
-    mapView: PropTypes.object
+    view: PropTypes.object
   };
 
   getChildContext = () => {
     return {
-      mapView: this.mapView
+      view: this.view
     };
   };
 
   constructor (props) {
     super(props);
-    this.mapView = {};
+    this.view = {};
   }
 
   componentDidMount() {
@@ -34,16 +35,19 @@ export default class Map extends Component {
       url: 'http://www.arcgis.com/sharing/rest/content/items/bdf1eec3fa79456c8c7c2bb62f86dade/resources/styles/root.json?f=pjson'
     });
 
+    //- FOR 3D, comment out layers, and include basemap, comment out new MapView and use new SceneView
     const map = new EsriMap({
+      // basemap: 'topo'
       layers: [grayVector]
     });
 
-    const promise = new MapView({ container: this.refs.map, map: map, ...mapConfig.viewOptions });
-    promise.then((mapView) => {
-      this.mapView = mapView;
+    const promise = new MapView({ container: this.refs.map, map: map, ...mapConfig.mapViewOptions });
+    // const promise = new SceneView({ container: this.refs.map, map: map, ...mapConfig.sceneViewOptions });
+    promise.then((view) => {
+      this.view = view;
       appActions.update();
       //- Expose the map for debugging purposes
-      if (brApp.debug) { brApp.mapView = this.mapView; }
+      if (brApp.debug) { brApp.appView = this.view; }
     });
 
   }
@@ -61,7 +65,7 @@ export default class Map extends Component {
 
     return (
       <div ref='map' className='map'>
-        <Loader active={!this.mapView.ready} />
+        <Loader active={!this.view.ready} />
         <MapControls />
 
         <ModalWrapper theme='error-modal' active={shareModalActive} close={this.closeShareModal}>
