@@ -1,3 +1,4 @@
+import ZoomViewModel from 'esri/widgets/Zoom/ZoomViewModel';
 import appActions from 'actions/AppActions';
 import React, {
   Component,
@@ -13,18 +14,29 @@ const animationOptions = {
   duration: 300
 };
 
+let zoomModel;
+
 export default class Test extends Component {
 
   static contextTypes = {
     view: PropTypes.object
   };
 
+  componentDidUpdate() {
+    const {view} = this.context;
+    if (view.ready && !zoomModel) {
+      zoomModel = new ZoomViewModel({ view: view });
+    }
+  }
+
   zoomIn = () => {
+    // zoomModel.zoomIn();
     const {view} = this.context;
     view.animateTo({ zoom: view.zoom + 1 }, animationOptions);
   };
 
   zoomOut = () => {
+    // zoomModel.zoomOut();
     const {view} = this.context;
     view.animateTo({ zoom: view.zoom - 1 }, animationOptions);
   };
