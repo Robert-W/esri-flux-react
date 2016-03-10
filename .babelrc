@@ -4,13 +4,14 @@
       "plugins": ["transform-es2015-modules-amd"]
     },
     "development": {
-      "plugins": ["transform-es2015-modules-amd"]
+      "plugins": ["transform-es2015-modules-amd"],
+      "sourceMaps": "inline"
     }
   },
   "presets": ["react", "es2015", "stage-0"],
-  "sourceMaps": false,
   "ignore": [
     "build",
-    "node_modules"
+    "node_modules",
+    "src/locals"
   ]
 }
