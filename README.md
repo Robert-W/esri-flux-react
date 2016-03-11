@@ -45,8 +45,8 @@ style-src 'self' js.arcgis.com 'unsafe-inline';
 There is an exmaple `.htaccess` file in the root you can use. There are also gulp tasks setup to inject the version number from the `package.json` onto the end of your css resources and into the `dojoConfig` variable, making for an effective cache-busting mechanism when used correctly.
 
 ### Versions
-[ArcGIS JSAPI v3.15](https://github.com/Robert-W/esri-flux-react/releases/tag/v3.15)
-[ArcGIS JSAPI v3.16](https://github.com/Robert-W/esri-flux-react/releases/tag/v3.16)
+* [ArcGIS JSAPI v3.15](https://github.com/Robert-W/esri-flux-react/releases/tag/v3.15)
+* [ArcGIS JSAPI v3.16](https://github.com/Robert-W/esri-flux-react/releases/tag/v3.16)
 
 #### Resources
 * [Great talk from Yan Zhu on Security, HTTPS, and CSP](https://www.youtube.com/watch?v=CDdYu2CJ-SU)
