@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run babel -- -w & gulp start & gulp serve",
     "secure": "npm run babel -- -w & gulp start & SERVER=https gulp serve",
-    "production": "rm -rf dist; npm run optimizejs; gulp production; gulp prerender;",
+    "production": "BABEL_ENV=production; rm -rf dist; npm run optimizejs; gulp production; gulp prerender;",
     "optimizejs": "npm run babel; r.js -o rjs.build.js",
     "babel": "babel src --out-dir build",
     "test": "eslint test/*.js; eslint src/**/*.js; mocha --colors --reporter nyan",
