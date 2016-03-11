@@ -1,8 +1,11 @@
 # esri-flux-react  [![Build Status](https://travis-ci.org/Robert-W/esri-flux-react.svg?branch=master)](https://travis-ci.org/Robert-W/esri-flux-react)
-Simple Boilerplate for using [React](https://facebook.github.io/react/) and [Esri's JavaScript API](https://developers.arcgis.com/javascript/) together. It supports IE 9+ and the last two versions of all major browsers and can run in https or http. For data management, It is also using Flux via [Alt.js](http://alt.js.org/).
+Simple Boilerplate for using [React](https://facebook.github.io/react/) and [Esri's JavaScript API](https://developers.arcgis.com/javascript/) together. It supports IE 9+ and the last two versions of all major browsers and can run in https or http. For data management, it's using [Alt.js](http://alt.js.org/) (a flux library).
 
 ### Demo - https
 [https://robert-w.github.io/esri-flux-react/](https://robert-w.github.io/esri-flux-react/)
+
+### NOTE
+Current branch is using the 4.0 Beta, their are tags for [3.15]((https://github.com/Robert-W/esri-flux-react/releases/tag/v3.15)) & [3.16]((https://github.com/Robert-W/esri-flux-react/releases/tag/v3.16)) if you need those
 
 ### Getting Started
 This project requires [Node.js](https://nodejs.org/en/)
@@ -43,6 +46,10 @@ style-src 'self' js.arcgis.com 'unsafe-inline';
 
 ### Cache
 There is an exmaple `.htaccess` file in the root you can use. There are also gulp tasks setup to inject the version number from the `package.json` onto the end of your css resources and into the `dojoConfig` variable, making for an effective cache-busting mechanism when used correctly.
+
+### Versions
+* [ArcGIS JSAPI v3.16](https://github.com/Robert-W/esri-flux-react/releases/tag/v3.16)
+* [ArcGIS JSAPI v3.15](https://github.com/Robert-W/esri-flux-react/releases/tag/v3.15)
 
 #### Resources
 * [Great talk from Yan Zhu on Security, HTTPS, and CSP](https://www.youtube.com/watch?v=CDdYu2CJ-SU)

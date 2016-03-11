@@ -8,10 +8,6 @@ class AppActions {
 
   toggleLocateModal = (data) => data;
 
-  updateViewMode = (mode) => {
-    return { viewMode: mode };
-  }
-
 }
 
 export default dispatcher.createActions(AppActions);

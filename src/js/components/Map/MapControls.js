@@ -1,5 +1,4 @@
 // import ZoomViewModel from 'esri/widgets/Zoom/ZoomViewModel';
-import { MODE_2D, MODE_3D } from 'constants/AppConstants';
 import appActions from 'actions/AppActions';
 import React, {
   Component,
@@ -50,11 +49,6 @@ export default class Test extends Component {
     appActions.toggleLocateModal({ visible: true });
   };
 
-  updateViewMode = () => {
-    const mode = this.props.currentViewMode === MODE_2D ? MODE_3D : MODE_2D;
-    appActions.updateViewMode(mode);
-  }
-
   render () {
     return (
       <div className='map__controls map-component shadow'>
@@ -70,12 +64,6 @@ export default class Test extends Component {
           </li>
           <li className='map__controls__item pointer' onClick={this.locate}>
             <svg className='map__controls__item-icon' dangerouslySetInnerHTML={{ __html: locateSvg }} />
-          </li>
-          <li className='map__controls__item pointer' onClick={this.updateViewMode}>
-            <span>{this.props.currentViewMode}</span>
-          </li>
-          <li className='map__controls__item pointer' onClick={this.locate}>
-            ?
           </li>
         </ul>
       </div>

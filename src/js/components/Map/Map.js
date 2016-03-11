@@ -1,6 +1,5 @@
 import LocateModal from 'components/shared/LocateModal';
 import ShareModal from 'components/shared/ShareModal';
-import { MODE_2D } from 'constants/AppConstants';
 import appActions from 'actions/AppActions';
 import MapControls from './MapControls';
 import {mapConfig} from 'js/config';
@@ -34,17 +33,6 @@ export default class Map extends Component {
 
   componentDidMount() {
     this.createMapView();
-  }
-
-  componentWillUpdate(nextProps) {
-    //- If the view mode changed, create the new view
-    if (this.props.currentViewMode !== nextProps.currentViewMode) {
-      if (nextProps.currentViewMode === MODE_2D) {
-        this.createMapView();
-      } else {
-        this.createSceneView();
-      }
-    }
   }
 
   cleanupView = () => {
@@ -94,12 +82,12 @@ export default class Map extends Component {
   };
 
   render () {
-    const { shareModalActive, locateModalActive, currentViewMode } = this.props;
+    const { shareModalActive, locateModalActive } = this.props;
 
     return (
       <div ref='map' className='map'>
-        <Loader active={!this.view.ready} />
-        <MapControls currentViewMode={currentViewMode} />
+        <Loader active={!this.map.loaded} />
+        <MapControls />
         <LocateModal active={locateModalActive} />
         <ShareModal active={shareModalActive} />
       </div>

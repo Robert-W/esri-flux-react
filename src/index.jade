@@ -9,13 +9,16 @@ html
     style
       :stylus
         @require 'css/critical'
-
-    link(rel='stylesheet', href='css/app.css?#{version}')
-    link(rel='stylesheet', href='//js.arcgis.com/4.0beta3/esri/css/main.css')
+    link(rel='stylesheet', href='//js.arcgis.com/#{esriVersion}/esri/css/main.css')
   body
     include jade/svg
     #root
     script.
+      //- Add versions for JS to read
+      var _versions = {
+        cache: '#{version}',
+        esri: '#{esriVersion}'
+      };
       var base = location.href.replace(/\/[^/]+$/, '');
       var dojoConfig = {
         parseOnLoad: false,
@@ -39,4 +42,4 @@ html
         deps: ['dojo/domReady!'],
         callback: function () {require(['js/main']);}
       };
-    script(src='//js.arcgis.com/4.0beta3/', async)
+    script(src='//js.arcgis.com/#{esriVersion}/init.js', async)

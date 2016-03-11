@@ -6,21 +6,15 @@ class AppStore {
 
   constructor () {
 
-    this.currentViewMode = MODE_2D;
     this.shareModalActive = false;
     this.locateModalActive = false;
 
     this.bindListeners({
       update: appActions.update,
-      updateViewMode: appActions.updateViewMode,
       toggleShareModal: appActions.toggleShareModal,
       toggleLocateModal: appActions.toggleLocateModal
     });
 
-  }
-
-  updateViewMode (data) {
-    this.currentViewMode = data.viewMode;
   }
 
   toggleShareModal (data) {
