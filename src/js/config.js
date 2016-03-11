@@ -13,5 +13,5 @@ export const mapConfig = {
 };
 
 export const text = {
-  title: 'Esri & React with Alt.js'
+  title: 'Application Title'
 };

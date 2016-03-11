@@ -1,3 +1,5 @@
+import LocateModal from 'components/shared/LocateModal';
+import ShareModal from 'components/shared/ShareModal';
 import appActions from 'actions/AppActions';
 import MapControls from './MapControls';
 import {mapConfig} from 'js/config';
@@ -33,10 +35,14 @@ export default class Map extends Component {
   }
 
   render () {
+    const { shareModalActive, locateModalActive } = this.props;
+
     return (
       <div ref='map' className='map'>
         <Loader active={!this.map.loaded} />
         <MapControls />
+        <LocateModal active={locateModalActive} />
+        <ShareModal active={shareModalActive} />
       </div>
     );
   }

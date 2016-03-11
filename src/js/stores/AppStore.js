@@ -5,13 +5,26 @@ class AppStore {
 
   constructor () {
 
+    this.shareModalActive = false;
+    this.locateModalActive = false;
+
     this.bindListeners({
-      updateMap: appActions.updateMap
+      updateMap: appActions.updateMap,
+      toggleShareModal: appActions.toggleShareModal,
+      toggleLocateModal: appActions.toggleLocateModal
     });
 
   }
 
   updateMap () {}
+
+  toggleShareModal (data) {
+    this.shareModalActive = data.visible;
+  }
+
+  toggleLocateModal (data) {
+    this.locateModalActive = data.visible;
+  }
 
 }
 

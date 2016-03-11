@@ -1,3 +1,4 @@
+import appActions from 'actions/AppActions';
 import React, {
   Component,
   PropTypes
@@ -25,11 +26,11 @@ export default class Test extends Component {
   };
 
   share = () => {
-    console.log('MapControls.share');
+    appActions.toggleShareModal({ visible: true });
   };
 
   locate = () => {
-    console.log('MapControls.locate');
+    appActions.toggleLocateModal({ visible: true });
   };
 
   render () {
