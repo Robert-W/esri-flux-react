@@ -24,7 +24,7 @@ const configureApp = () => {};
 
 const lazyloadAssets = () => {
   loadCSS(`css/app.css?v=${window._versions.cache}`);
-  // loadCSS(`//js.arcgis.com/${window._versions.esri}/esri/css/main.css`);
+  loadCSS(`//js.arcgis.com/${window._versions.esri}/esri/css/main.css`);
 };
 
 const initializeApp = () => {

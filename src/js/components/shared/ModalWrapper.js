@@ -63,7 +63,7 @@ export default function ControlledModalWrapper (props) {
       <div style={stylesheet.modalBackground} onClick={props.close} />
       <article {...modalAttrs}>
         <div title='close' style={stylesheet.close} onClick={props.close}>
-          <svg style={stylesheet.closeSvg} viewbox='0 0 25 25'>
+          <svg style={stylesheet.closeSvg} viewBox='0 0 25 25'>
             <title>Close</title>
             <path d="M 5 19 L 19 5 L 21 7 L 7 21 L 5 19 ZM 7 5 L 21 19 L 19 21 L 5 7 L 7 5 Z"></path>
           </svg>
