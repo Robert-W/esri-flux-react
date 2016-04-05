@@ -40,6 +40,8 @@ html
           ['babel-polyfill', 'vendor/babel-polyfill/browser-polyfill']
         ],
         deps: ['dojo/domReady!'],
-        callback: function () {require(['js/main']);}
+        callback: function () {
+          require(['js/main']);
+        }
       };
     script(src='//js.arcgis.com/#{esriVersion}/init.js', async)

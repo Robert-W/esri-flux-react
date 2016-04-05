@@ -1,3 +1,4 @@
+/* @flow */
 import dispatcher from 'js/dispatcher';
 
 class AppActions {

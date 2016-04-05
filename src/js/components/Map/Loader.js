@@ -1,8 +1,7 @@
-import React, {
-  PropTypes
-} from 'react';
+/* @flow */
+import React from 'react';
 
-const stylesheet = {
+const stylesheet: any = {
   loader: {
     background: 'rgba(220, 220, 220, 0.75)',
     position: 'absolute',
@@ -31,7 +30,9 @@ const stylesheet = {
 }
 */
 
-const Loader = (props) => {
+type LoaderPropTypes = { active: boolean };
+
+const Loader = (props: LoaderPropTypes) => {
   //- Apply the keyframe animation if active
   const foregroundStyles = props.active ? `animation: ${stylesheet.foreground.animation}` : '';
   //- Show the loader if active
@@ -48,10 +49,6 @@ const Loader = (props) => {
       </div>
     </div>
   );
-};
-
-Loader.propTypes = {
-  active: PropTypes.bool.isRequired
 };
 
 export { Loader as default };

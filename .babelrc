@@ -8,9 +8,11 @@
       "sourceMaps": "inline"
     }
   },
+  "plugins": ["babel-plugin-transform-flow-strip-types"],
   "presets": ["react", "es2015", "stage-0"],
   "ignore": [
     "build",
-    "node_modules"
+    "node_modules",
+    "declarations"
   ]
 }

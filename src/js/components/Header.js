@@ -1,13 +1,15 @@
+/* @flow */
 import React, {
-  Component,
-  PropTypes
+  Component
 } from 'react';
+
+type HeaderPropTypes = {
+  title: string
+};
 
 export default class Header extends Component {
 
-  static propTypes = {
-    title: PropTypes.string.isRequired
-  };
+  props: HeaderPropTypes;
 
   render () {
     const {title} = this.props;

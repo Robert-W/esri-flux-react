@@ -1,3 +1,4 @@
+/* @flow */
 import LocateModal from 'components/shared/LocateModal';
 import ShareModal from 'components/shared/ShareModal';
 import appActions from 'actions/AppActions';
@@ -13,19 +14,28 @@ import React, {
   PropTypes
 } from 'react';
 
+type MapPropTypes = {
+  shareModalActive: boolean,
+  locateModalActive: boolean
+}
+
 export default class Map extends Component {
+
+  props: MapPropTypes;
+  view: any;
+  map: any;
 
   static childContextTypes = {
     view: PropTypes.object
   };
 
-  getChildContext = () => {
+  getChildContext:any = () => {
     return {
       view: this.view
     };
   };
 
-  constructor (props) {
+  constructor (props: any) {
     super(props);
     this.view = {};
     this.map = {};
@@ -35,14 +45,14 @@ export default class Map extends Component {
     this.createMapView();
   }
 
-  cleanupView = () => {
+  cleanupView:any = ():void => {
     if (this.view.destroy) {
       this.view.destroy();
       this.map.destroy();
     }
-  }
+  };
 
-  createMapView = () => {
+  createMapView:any = ():void => {
     //- Destroy the view & map if it exists
     this.cleanupView();
     //- Create the map
@@ -64,7 +74,7 @@ export default class Map extends Component {
     });
   };
 
-  createSceneView = () => {
+  createSceneView:any = ():void => {
     //- Destroy the view & map if it exists
     this.cleanupView();
     //- Create the map

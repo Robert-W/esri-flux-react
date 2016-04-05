@@ -1,3 +1,4 @@
+/* @flow */
 import AppStore from 'stores/AppStore';
 import {text} from 'js/config';
 import Header from './Header';
@@ -8,7 +9,7 @@ import React, {
 
 export default class App extends Component {
 
-  constructor (props) {
+  constructor (props?: any) {
     super(props);
     this.state = AppStore.getState();
   }
@@ -18,8 +19,8 @@ export default class App extends Component {
   }
 
   // bound functions
-  storeDidUpdate = () => {
-    this.setState(AppStore.getState());
+  storeDidUpdate: {state?: any} = (state) => {
+    this.setState(state);
   };
 
   render () {

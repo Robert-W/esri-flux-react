@@ -1,3 +1,4 @@
+/* @flow */
 // import ZoomViewModel from 'esri/widgets/Zoom/ZoomViewModel';
 import appActions from 'actions/AppActions';
 import React, {
@@ -29,23 +30,23 @@ export default class Test extends Component {
   //   }
   // }
 
-  zoomIn = () => {
+  zoomIn:any = ():void => {
     // zoomModel.zoomIn();
     const {view} = this.context;
     view.animateTo({ zoom: view.zoom + 1 }, animationOptions);
   };
 
-  zoomOut = () => {
+  zoomOut:any = ():void => {
     // zoomModel.zoomOut();
     const {view} = this.context;
     view.animateTo({ zoom: view.zoom - 1 }, animationOptions);
   };
 
-  share = () => {
+  share:any = ():void => {
     appActions.toggleShareModal({ visible: true });
   };
 
-  locate = () => {
+  locate:any = ():void => {
     appActions.toggleLocateModal({ visible: true });
   };
 

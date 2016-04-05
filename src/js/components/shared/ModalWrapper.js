@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+/* @flow */
+import React, { Component } from 'react';
 
-const stylesheet = {
+const stylesheet:any = {
   modalContainer: {
     position: 'fixed',
     height: '100%',
@@ -46,38 +47,43 @@ const stylesheet = {
   }
 };
 
-export default function ControlledModalWrapper (props) {
-  //- Build up the attributes
-  const modalAttrs = {
-    style: {...stylesheet.modal}
+export default class ModalWrapper extends Component {
+
+  props: {
+    close: () => void,
+    active: boolean,
+    theme?: string,
+    children?: any
   };
 
-  //- show or hide the container
-  stylesheet.modalContainer.display = props.active ? 'block' : 'none';
+  render () {
+    const { active, close, theme} = this.props;
+    //- Build up the attributes
+    const modalAttrs:any = {
+      style: {...stylesheet.modal}
+    };
 
-  //- add a className if theme is provided
-  if (props.theme) { modalAttrs.className = props.theme; }
+    //- show or hide the container
+    stylesheet.modalContainer.display = active ? 'block' : 'none';
 
-  return (
-    <div style={stylesheet.modalContainer}>
-      <div style={stylesheet.modalBackground} onClick={props.close} />
-      <article {...modalAttrs}>
-        <div title='close' style={stylesheet.close} onClick={props.close}>
-          <svg style={stylesheet.closeSvg} viewBox='0 0 25 25'>
-            <title>Close</title>
-            <path d="M 5 19 L 19 5 L 21 7 L 7 21 L 5 19 ZM 7 5 L 21 19 L 19 21 L 5 7 L 7 5 Z"></path>
-          </svg>
-        </div>
-          <div style={stylesheet.content}>
-            {props.children}
+    //- add a className if theme is provided
+    if (theme) { modalAttrs.className = theme; }
+
+    return (
+      <div style={stylesheet.modalContainer}>
+        <div style={stylesheet.modalBackground} onClick={close} />
+        <article {...modalAttrs}>
+          <div title='close' style={stylesheet.close} onClick={close}>
+            <svg style={stylesheet.closeSvg} viewBox='0 0 25 25'>
+              <title>Close</title>
+              <path d="M 5 19 L 19 5 L 21 7 L 7 21 L 5 19 ZM 7 5 L 21 19 L 19 21 L 5 7 L 7 5 Z"></path>
+            </svg>
           </div>
-      </article>
-    </div>
-  );
+            <div style={stylesheet.content}>
+              {this.props.children}
+            </div>
+        </article>
+      </div>
+    );
+  }
 }
-
-ControlledModalWrapper.propTypes = {
-  close: PropTypes.func.isRequired,
-  theme: PropTypes.string,
-  active: PropTypes.bool
-};
