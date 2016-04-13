@@ -54,16 +54,28 @@ export default class Test extends Component {
       <div className='map__controls map-component shadow'>
         <ul className='map__controls__items'>
           <li className='map__controls__item pointer' onClick={this.zoomOut}>
-            <svg className='map__controls__item-icon' dangerouslySetInnerHTML={{ __html: zoomOutSvg }} />
+            <svg role='img'
+              aria-label='Zoom out'
+              className='map__controls__item-icon'
+              dangerouslySetInnerHTML={{ __html: zoomOutSvg }} />
           </li>
           <li className='map__controls__item pointer' onClick={this.zoomIn}>
-            <svg className='map__controls__item-icon' dangerouslySetInnerHTML={{ __html: zoomInSvg }} />
+            <svg role='img'
+              aria-label='Zoom in'
+              className='map__controls__item-icon'
+              dangerouslySetInnerHTML={{ __html: zoomInSvg }} />
           </li>
           <li className='map__controls__item pointer' onClick={this.share}>
-            <svg className='map__controls__item-icon' dangerouslySetInnerHTML={{ __html: shareSvg }} />
+            <svg role='img'
+              aria-label='Share your experience'
+              className='map__controls__item-icon'
+              dangerouslySetInnerHTML={{ __html: shareSvg }} />
           </li>
           <li className='map__controls__item pointer' onClick={this.locate}>
-            <svg className='map__controls__item-icon' dangerouslySetInnerHTML={{ __html: locateSvg }} />
+            <svg role='img'
+              aria-label='Locate me on the map'
+              className='map__controls__item-icon'
+              dangerouslySetInnerHTML={{ __html: locateSvg }} />
           </li>
         </ul>
       </div>

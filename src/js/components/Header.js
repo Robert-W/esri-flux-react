@@ -15,7 +15,7 @@ export default class Header extends Component {
     return (
       <header className='app-header'>
         <div className='app-header__content inner'>
-          <h2 className='app-header__title'>{title}</h2>
+          <h1 className='app-header__title'>{title}</h1>
         </div>
       </header>
     );

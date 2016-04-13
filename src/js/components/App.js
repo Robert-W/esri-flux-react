@@ -24,10 +24,10 @@ export default class App extends Component {
 
   render () {
     return (
-      <div className='root'>
+      <section className='page-content'>
         <Header title={text.title} />
         <Map {...this.state} />
-      </div>
+      </section>
     );
   }
 }
