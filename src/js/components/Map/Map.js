@@ -84,7 +84,6 @@ export default class Map extends Component {
 
   render () {
     const { shareModalActive, locateModalActive } = this.props;
-    console.log(this.map);
 
     return (
       <div ref='map' className='map'>
