@@ -3,7 +3,7 @@ import ShareModal from 'components/shared/ShareModal';
 import appActions from 'actions/AppActions';
 import MapControls from './MapControls';
 import {mapConfig} from 'js/config';
-import VectorTileLayer from 'esri/layers/VectorTileLayer';
+// import VectorTileLayer from 'esri/layers/VectorTileLayer';
 import SceneView from 'esri/views/SceneView';
 import MapView from 'esri/views/MapView';
 import EsriMap from 'esri/Map';
@@ -46,12 +46,13 @@ export default class Map extends Component {
     //- Destroy the view & map if it exists
     this.cleanupView();
     //- Create the map
-    const grayVector = new VectorTileLayer({
-      url: 'http://www.arcgis.com/sharing/rest/content/items/bdf1eec3fa79456c8c7c2bb62f86dade/resources/styles/root.json?f=pjson'
-    });
+    // const grayVector = new VectorTileLayer({
+    //   url: 'http://www.arcgis.com/sharing/rest/content/items/bdf1eec3fa79456c8c7c2bb62f86dade/resources/styles/root.json?f=pjson'
+    // });
 
     this.map = new EsriMap({
-      layers: [grayVector]
+      basemap: 'gray-vector'
+      // layers: [grayVector]
     });
 
     //- Create the MapView
@@ -83,10 +84,11 @@ export default class Map extends Component {
 
   render () {
     const { shareModalActive, locateModalActive } = this.props;
+    console.log(this.map);
 
     return (
       <div ref='map' className='map'>
-        <Loader active={!this.map.loaded} />
+        <Loader active={!this.view.ready} />
         <MapControls />
         <LocateModal active={locateModalActive} />
         <ShareModal active={shareModalActive} />
