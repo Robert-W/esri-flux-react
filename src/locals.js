@@ -1,5 +1,5 @@
 module.exports = {
   title: 'esri-flux-react',
-  esriVersion: '4.0',
+  esriVersion: '3.16',
   author: 'Robert-W'
 };

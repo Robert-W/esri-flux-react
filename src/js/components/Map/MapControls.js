@@ -1,4 +1,3 @@
-// import ZoomViewModel from 'esri/widgets/Zoom/ZoomViewModel';
 import appActions from 'actions/AppActions';
 import React, {
   Component,
@@ -10,35 +9,20 @@ const zoomOutSvg = '<use xlink:href="#icon-minus" />';
 const zoomInSvg = '<use xlink:href="#icon-plus" />';
 const shareSvg = '<use xlink:href="#icon-share" />';
 
-const animationOptions = {
-  duration: 300
-};
-
-// let zoomModel;
-
 export default class Test extends Component {
 
   static contextTypes = {
-    view: PropTypes.object
+    map: PropTypes.object
   };
 
-  // componentDidUpdate() {
-  //   const {view} = this.context;
-  //   if (view.ready && !zoomModel) {
-  //     zoomModel = new ZoomViewModel({ view: view });
-  //   }
-  // }
-
   zoomIn = () => {
-    // zoomModel.zoomIn();
-    const {view} = this.context;
-    view.animateTo({ zoom: view.zoom + 1 }, animationOptions);
+    const {map} = this.context;
+    map.setZoom(map.getZoom() + 1);
   };
 
   zoomOut = () => {
-    // zoomModel.zoomOut();
-    const {view} = this.context;
-    view.animateTo({ zoom: view.zoom - 1 }, animationOptions);
+    const {map} = this.context;
+    map.setZoom(map.getZoom() - 1);
   };
 
   share = () => {

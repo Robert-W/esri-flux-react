@@ -1,13 +1,14 @@
 export const mapConfig = {
-  mapViewOptions: {
-    ui: { components: ['logo', 'attribution'] },
-    center: [-35.55, 26.53],
-    zoom: 2
-  },
-  sceneViewOptions: {
-    ui: { components: ['logo', 'attribution', 'compass'] },
-    center: [-35.55, 26.53]
-    // zoom: 4
+  options: {
+    navigationMode: 'css-transforms',
+    basemap: 'national-geographic',
+    force3DTransforms: true,
+    showAttribution: false,
+    center: [-41, 13],
+    fadeOnZoom: false,
+    slider: false,
+    logo: false,
+    zoom: 3
   }
 };
 
