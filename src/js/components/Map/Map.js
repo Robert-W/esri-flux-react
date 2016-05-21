@@ -1,17 +1,14 @@
 import LocateModal from 'components/shared/LocateModal';
 import ShareModal from 'components/shared/ShareModal';
 import appActions from 'actions/AppActions';
-import MapControls from './MapControls';
+import MapControls from 'components/Map/MapControls';
 import {mapConfig} from 'js/config';
 // import VectorTileLayer from 'esri/layers/VectorTileLayer';
 import SceneView from 'esri/views/SceneView';
 import MapView from 'esri/views/MapView';
 import EsriMap from 'esri/Map';
-import Loader from './Loader';
-import React, {
-  Component,
-  PropTypes
-} from 'react';
+import Loader from 'components/Map/Loader';
+import React, { Component, PropTypes } from 'react';
 
 export default class Map extends Component {
 
