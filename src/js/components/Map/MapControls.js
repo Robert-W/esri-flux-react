@@ -32,13 +32,13 @@ export default class Test extends Component {
   zoomIn = () => {
     // zoomModel.zoomIn();
     const {view} = this.context;
-    view.animateTo({ zoom: view.zoom + 1 }, animationOptions);
+    view.goTo({ zoom: view.zoom + 1 }, animationOptions);
   };
 
   zoomOut = () => {
     // zoomModel.zoomOut();
     const {view} = this.context;
-    view.animateTo({ zoom: view.zoom - 1 }, animationOptions);
+    view.goTo({ zoom: view.zoom - 1 }, animationOptions);
   };
 
   share = () => {
