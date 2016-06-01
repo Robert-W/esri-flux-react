@@ -5,7 +5,10 @@ Simple Boilerplate for using [React](https://facebook.github.io/react/) and [Esr
 [https://robert-w.github.io/esri-flux-react/](https://robert-w.github.io/esri-flux-react/)
 
 ### NOTE
-Current branch is using the 4.0 Beta, their are tags for [3.15]((https://github.com/Robert-W/esri-flux-react/releases/tag/v3.15)) & [3.16]((https://github.com/Robert-W/esri-flux-react/releases/tag/v3.16)) if you need those
+Current branch is using the 4.0, their are tags for [3.15]((https://github.com/Robert-W/esri-flux-react/releases/tag/v3.15)) & [3.16]((https://github.com/Robert-W/esri-flux-react/releases/tag/v3.16)) if you need those
+
+### NEW! Alternate Boilerplate
+Check out another boilerplate with the ArcGIS JavaScript API using a different set of tools.  It is using the 4.0 API, React, Redux, Sass, and Flow for type checking. You can find it here [esri-redux](https://github.com/Robert-W/esri-redux).
 
 ### Getting Started
 This project requires [Node.js](https://nodejs.org/en/)
