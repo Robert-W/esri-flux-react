@@ -1,7 +1,7 @@
-import AppStore from 'stores/AppStore';
+import AppStore from 'js/stores/AppStore';
+import Header from 'js/components/Header';
+import Map from 'js/components/Map';
 import {text} from 'js/config';
-import Header from './Header';
-import Map from './map/Map';
 import React, {
   Component
 } from 'react';

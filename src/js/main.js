@@ -1,10 +1,7 @@
-import {loadCSS} from 'utils/loaders';
-import App from 'components/App';
+import {loadCSS} from 'js/utils/loaders';
+import App from 'js/components/App';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import 'babel-polyfill';
-
-if (!_babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 
 window.brApp = {
   debug: location.search.slice(1).search('debug') > -1

@@ -1,0 +1,19 @@
+.app-header {
+  border-bottom: 1px solid $lightGrayBorder;
+  background-color: $transparentHeader;
+  height: $headerHeight;
+  position: absolute;
+  width: 100%;
+  color: #FFF;
+  z-index: 5;
+}
+
+.app-header__content {
+  align-items: center;
+  display: flex;
+  height: 100%;
+}
+
+.app-header__title {
+  margin: auto 10px;
+}

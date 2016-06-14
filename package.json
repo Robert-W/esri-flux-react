@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run babel -- -w & gulp start & gulp serve",
     "secure": "npm run babel -- -w & gulp start & SERVER=https gulp serve",
-    "production": "BABEL_ENV=production; rm -rf dist; npm run optimizejs; gulp production; gulp prerender;",
+    "dist": "rm -rf dist;gulp production;BABEL_ENV=production node ./build;",
     "optimizejs": "npm run babel; r.js -o rjs.build.js",
     "babel": "babel src --out-dir build",
     "test": "eslint test/*.js; eslint src/**/*.js; mocha --colors --reporter nyan",
@@ -32,21 +32,24 @@
   },
   "devDependencies": {
     "babel-eslint": "^5.0.0-beta6",
+    "babel-preset-es2015-rollup": "^1.1.1",
     "browser-sync": "^2.11.1",
     "chai": "^3.5.0",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.16.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-htmlmin": "^2.0.0",
     "gulp-imagemin": "^2.4.0",
-    "gulp-jade": "^1.1.0",
-    "gulp-minify-inline": "^0.1.1",
     "gulp-plumber": "^1.0.1",
-    "gulp-stylus": "^2.2.0",
-    "jstransformer-stylus": "^1.0.0",
+    "gulp-pug": "^3.0.3",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^2.3.1",
     "mocha": "^2.4.5",
     "react-prerender": "0.1.0",
     "requirejs": "^2.1.22",
+    "rollup": "^0.31.2",
+    "rollup-plugin-babel": "^2.5.1",
     "sinon": "^1.17.3"
   }
 }

@@ -1,14 +1,14 @@
 {
   "env": {
     "production": {
-      "plugins": ["transform-es2015-modules-amd"]
+      "presets": ["react", "es2015-rollup", "stage-0"]
     },
     "development": {
       "plugins": ["transform-es2015-modules-amd"],
+      "presets": ["react", "es2015", "stage-0"],
       "sourceMaps": "inline"
     }
   },
-  "presets": ["react", "es2015", "stage-0"],
   "ignore": [
     "build",
     "node_modules"

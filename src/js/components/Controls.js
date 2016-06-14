@@ -1,5 +1,5 @@
 // import ZoomViewModel from 'esri/widgets/Zoom/ZoomViewModel';
-import appActions from 'actions/AppActions';
+import appActions from 'js/actions/AppActions';
 import React, {
   Component,
   PropTypes

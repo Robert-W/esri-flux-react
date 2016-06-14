@@ -1,5 +1,4 @@
-import { MODE_2D } from 'constants/AppConstants';
-import appActions from 'actions/AppActions';
+import appActions from 'js/actions/AppActions';
 import dispatcher from 'js/dispatcher';
 
 class AppStore {

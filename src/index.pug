@@ -2,15 +2,13 @@ doctype
 html
   head
     title #{title}
-    include jade/meta
+    include pug/meta
     //- Include this to include a Content-Security-Policy
-    include jade/CSP
-
-    style
-      :stylus
-        @require 'css/critical'
+    include pug/CSP
+    //- Flag for gulp-replace to inject the contents critical.css
+    <!-- Inject: critical.css -->
   body
-    include jade/svg
+    include pug/svg
     div#root
     script.
       //- Add versions for JS to read
@@ -25,20 +23,14 @@ html
         cacheBust: '#{version}',
         packages: [
           { name: 'js', location: base + '/js' },
-          { name: 'vendor', location: base + '/vendor' },
-          { name: 'utils', location: base + '/js/utils' },
-          { name: 'stores', location: base + '/js/stores' },
-          { name: 'actions', location: base + '/js/actions' },
-          { name: 'constants', location: base + '/js/constants' },
-          { name: 'components', location: base + '/js/components' }
+          { name: 'vendor', location: base + '/vendor' }
         ],
         aliases: [
           ['alt', 'vendor/alt/dist/alt.min'],
           ['react', 'vendor/react/react.min'],
-          ['react-dom', 'vendor/react/react-dom.min'],
-          ['babel-polyfill', 'vendor/babel-polyfill/browser-polyfill']
+          ['react-dom', 'vendor/react/react-dom.min']
         ],
         deps: ['dojo/domReady!'],
         callback: function () {require(['js/main']);}
       };
-    script(src='//js.arcgis.com/#{esriVersion}/init.js', async)
+    script(src='//js.arcgis.com/' + esriVersion + '/init.js', async)

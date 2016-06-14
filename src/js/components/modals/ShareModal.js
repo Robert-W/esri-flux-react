@@ -1,5 +1,5 @@
-import ModalWrapper from 'components/shared/ModalWrapper';
-import appActions from 'actions/AppActions';
+import ModalWrapper from 'js/components/modals/ModalWrapper';
+import appActions from 'js/actions/AppActions';
 import React, { Component } from 'react';
 
 export default class ShareModal extends Component {
